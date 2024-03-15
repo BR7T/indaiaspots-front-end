@@ -1,40 +1,32 @@
 main
-    height: 100vh
-    width: 100%
     display: flex
     flex-direction: row
+    justify-content: space-evenly
     align-items: center
-    justify-content: right
-    background-color: #d7d7d7
+    height: 90%
+    border-radius: 40px
+    width: 70%
+    background: #555555
+    
+    aside,#LoginArea
+        width: 48%
+    aside
+        background-image: url(https://images.unsplash.com/photo-1709706696740-6af4ba15a625?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)
+        
+        height: 97%
+        display: flex
+        align-items: center
+        border-radius: 40px
 
     #LoginArea
-        border-radius: 20px
-        box-shadow: 0 0 8px 5px #bebebe
+        height: 80%
+        padding: 50px
         display: flex
+        align-items: center
         flex-direction: column
-        align-items: start
-        margin: 30px
-        height: 60%
-        width: 30%
-        background-color: white
-        padding: 40px
-        
-        #title
-            flex: 1
-        #alterLogin
-            flex: 1
-            align-self: center
-        #formArea
-            
-            flex: 2
-            width: 100%
-            form
-                display: flex
-                flex-direction: column
-            input
-                height: 40px
-                width: 80%
-                border-radius: 15px
-                border: 2px solid black
-            input:focus
-                outline: 2px solid red
+        justify-content: center
+        #title  
+            display: flex
+            align-self: start
+            justify-content: center
+            align-items: center
