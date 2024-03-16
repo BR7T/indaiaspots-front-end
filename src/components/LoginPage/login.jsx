@@ -10,16 +10,15 @@ export default function Login(){
    
 
     return(
+        <div id="LoginPage">
         <main>
             
 
             <div id="LoginArea">
-                <div id="title">
-                    <div id="icon">
-                        A
-                    </div>
-                        <h1>Login</h1>
-                    </div>
+            <div id="icon">Indaia <br /> Spots</div>
+                <div id="title">  
+                    <h1>Login</h1>
+                </div>
                 <div id="alterLogin">
                     <button>Google</button><button>Instagram</button>
                 </div>
@@ -28,8 +27,9 @@ export default function Login(){
             
 
             <aside>
-                <h4>Indaiaspots</h4>
+               
             </aside>
         </main>
+        </div>
     )
 }
