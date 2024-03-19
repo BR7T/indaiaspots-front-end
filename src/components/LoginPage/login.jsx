@@ -1,29 +1,35 @@
 import { Link , Outlet } from "react-router-dom"
+import FormLogin from "./components/FormLogin"
 
 import "./login.sass"
 
+
+
 export default function Login(){
+
+   
+
     return(
+        <div id="LoginPage">
         <main>
             
 
             <div id="LoginArea">
-                <div id="title"><h1>Login</h1></div>
+            <div id="icon">Indaia <br /> Spots</div>
+                <div id="title">  
+                    <h1>Login</h1>
+                </div>
                 <div id="alterLogin">
                     <button>Google</button><button>Instagram</button>
                 </div>
-                <div id="formArea">
-                    <form action="post">
-                        <label htmlFor="email">Email</label>
-                        <input type="email" />
-                        <label htmlFor="password">Senha</label>
-                        <input type="password" />
-                            
-                        <button type="submit">Entrar</button>
-                    </form>
-                </div>
+                <FormLogin/>
             </div>
             
+
+            <aside>
+               
+            </aside>
         </main>
+        </div>
     )
 }
