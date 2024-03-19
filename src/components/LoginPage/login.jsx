@@ -1,9 +1,12 @@
 import { Link , Outlet } from "react-router-dom"
 import FormLogin from "./components/FormLogin"
 
+import { IoLogoGoogle } from "react-icons/io";
+
+
 import "./login.sass"
 
-
+import Images from "../../../public/Image/images";
 
 export default function Login(){
 
@@ -15,14 +18,19 @@ export default function Login(){
             
 
             <div id="LoginArea">
-            <div id="icon">Indaia <br /> Spots</div>
+                <div id="icon">
+                    <img src={Images.Logo} alt="Logo" />
+                    <p>IndaiaSpots</p>
+                </div>
                 <div id="title">  
                     <h1>Login</h1>
                 </div>
-                <div id="alterLogin">
-                    <button>Google</button><button>Instagram</button>
-                </div>
+                
                 <FormLogin/>
+                <p>Ou</p>
+                <div id="alterLogin">
+                    <button><IoLogoGoogle/> Continuar com o Google</button>
+                </div>
             </div>
             
 
