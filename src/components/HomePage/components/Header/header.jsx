@@ -1,3 +1,4 @@
+import Images from "../../../../../public/Image/images"
 import "./header.sass"
 
 
@@ -7,7 +8,9 @@ export default function Header(){
     return(
         <header>
             <div id="LogoArea">
-                <div id="LogoHeader"></div>
+                <div id="LogoHeader">
+                    <img src={Images.Logo} alt="" />
+                </div>
                 <p>INDSPTS</p>
             </div>
             
@@ -18,7 +21,7 @@ export default function Header(){
             </div>
 
             <div id="Shortcuts">
-                <p>Atalhos</p>
+                <p>Login</p>
             </div>
         </header>
     )
