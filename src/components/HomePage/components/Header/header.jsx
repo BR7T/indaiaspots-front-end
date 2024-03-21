@@ -20,8 +20,14 @@ export default function Header(){
                 <nav></nav>
             </div>
 
-            <div id="Shortcuts">
-                <p>Login</p>
+            <div id="SignInSignUp">
+                <button >
+                    Cadastre-se
+                    
+                </button>
+                <button>
+                    Login
+                </button>
             </div>
         </header>
     )
