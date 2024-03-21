@@ -10,6 +10,7 @@ import "./login.sass"
 import Images from "../../../public/Image/images";
 import FooterLogin from "./components/Footer/footerLogin";
 import Header from "../HomePage/components/Header/header";
+import TextAside from "./components/TextAside/TextAside";
 
 export default function Login(){
 
@@ -18,7 +19,6 @@ export default function Login(){
     return(
         <>
             <div id="LoginPage">
-                <Header/>
 
                 <main id="mainLogin">
                     
@@ -37,12 +37,15 @@ export default function Login(){
                     
 
                 </main>
-                <FooterLogin/>
-            </div>
+                <aside id="TextAsideArea">
+                    <TextAside/>
+                </aside>
 
-            <aside id="TextAside">
-                
-            </aside>
+            </div>
+            
+            <FooterLogin/>
+
+            
         </>
     )
 }
