@@ -1,3 +1,4 @@
+import Images from "../../../../../public/Image/images"
 import "./header.sass";
 import { Link } from "react-router-dom";
 
@@ -5,7 +6,9 @@ export default function Header() {
   return (
     <header>
       <div id="LogoArea">
-        <div id="LogoHeader"></div>
+        <div id="LogoHeader">
+                    <img src={Images.Logo} alt="" />
+                </div>
         <p>INDSPTS</p>
       </div>
 

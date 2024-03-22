@@ -7,9 +7,10 @@ function Home(){
     return(
         <div id="HOME">
             <Header/>
-            
-            <h1>Home Page</h1>
-            <Link to="/login">AAA</Link>
+            <main>
+                <h1>Home Page</h1>
+                <Link to="/login">Login</Link>
+            </main>
         </div>
     )
 }
