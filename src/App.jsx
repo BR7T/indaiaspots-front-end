@@ -7,6 +7,7 @@ import Register from "../src/components/RegisterPage/Register"
 function App(){
     return(
     <BrowserRouter>
+      
       <Routes>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/" element={<HomePage />}></Route>
