@@ -1,25 +1,27 @@
-import "./header.sass"
+import "./header.sass";
+import { Link } from "react-router-dom";
+
+export default function Header() {
+  return (
+    <header>
+      <div id="LogoArea">
+        <div id="LogoHeader"></div>
+        <p>INDSPTS</p>
+      </div>
+
+      <div id="BuscaArea">
+  <input type="text" id="searchInput" placeholder="Pesquisar..." />
+  <button id="searchButton">Pesquisar</button>
+</div>
 
 
-
-
-export default function Header(){
-    return(
-        <header>
-            <div id="LogoArea">
-                <div id="LogoHeader"></div>
-                <p>INDSPTS</p>
-            </div>
-            
-
-
-            <div id="BuscaArea">
-                <nav></nav>
-            </div>
-
-            <div id="Shortcuts">
-                <p>Atalhos</p>
-            </div>
-        </header>
-    )
+<div id="Shortcuts">
+        <div id="ButtonContainer">
+          <Link to="/login" id="loginLink">Login</Link>
+          <span>|</span>
+          <Link to="/register" id="registerLink">Registrar-se</Link>
+        </div>
+      </div>
+    </header>
+  );
 }
