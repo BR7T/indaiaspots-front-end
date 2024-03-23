@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "../src/Fonts/fontFace.sass"
 
 import Login from "./Pages/LoginPage/login.jsx"
 import HomePage from "./Pages/HomePage/home.jsx"
