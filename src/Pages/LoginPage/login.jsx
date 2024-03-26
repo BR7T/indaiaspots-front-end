@@ -20,12 +20,12 @@ export default function Login(){
         <>
             <div id="LoginPage">
 
-                <main id="mainLogin">
+                <main id="mainLogin" className="w-2/6 h-2/3 rounded-xl  ">
                     
-                    <div id="LoginArea">
+                    <div id="LoginArea" className=" justify-center h-full" >
                         
                         <div id="title">  
-                            <h1>Login</h1>
+                            <h1 className="text-5xl text-start">Login</h1>
                         </div>
                         
                         <FormLogin/>

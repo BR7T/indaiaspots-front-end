@@ -1,7 +1,8 @@
 {
     "Login" : [{
-        "name" : "Hesh" ,
-          "type" :"party" ,
-           "desc" : "Melhor balada de Indaiatuba e região"
+        "name" : "Pezão" ,
+          "type" :"food" ,
+           "desc" : "Melhor restaurante de Indaiatuba e região",
+           "rate" : "500"
     }]
 }
