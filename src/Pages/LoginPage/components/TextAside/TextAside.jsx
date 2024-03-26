@@ -1,13 +1,14 @@
 import "./TextAside.sass";
-import I from "../../../../../public/label.json"
+import Local from "../../../../../public/label.json"
 import { LuPartyPopper } from "react-icons/lu";
 import { IoRestaurant } from "react-icons/io5";
 import DetailBar from "../../../../standard/detailBar";
 import ButtonLogin from "../../../../standard/button";
+import { FaRegStarHalfStroke , FaStar , FaRegStar   } from "react-icons/fa6";
 
 export default function TextAside(){
     function IconsChange(){
-        switch(I.Login[0].type){
+        switch(Local.Login[0].type){
             case "party":
                 return <LuPartyPopper/>
             break;
@@ -18,9 +19,29 @@ export default function TextAside(){
         }
     }
 
+    function Stars(){
+        let nota = Local.Login[0].rate 
+        nota > 5 ? nota = 5 : nota = nota
+        let notacontrol = nota
+        let Nota0 = [
+            <FaRegStar/>,<FaRegStar/>,<FaRegStar/>,<FaRegStar/>,<FaRegStar/>
+        ]
+        for(let i = 0 ; i < nota ; i++){
+
+            notacontrol -= 1
+            if(notacontrol < 0){
+                Nota0.splice(i,1,<FaRegStarHalfStroke/>)
+            }
+            else{
+                Nota0.splice(i,1,<FaStar/>)
+            }
+            console.log(notacontrol)
+        }
+        return Nota0
+    }
 
     return(
-        <article id="TextAside">
+        <article id="TextAside" >
             <div id="TitleTextAside">
                 <h1>Indaia<span>Spots</span></h1>
             </div>
@@ -29,9 +50,9 @@ export default function TextAside(){
             
                 <div id="changeName">
 
-                    <h1>{I.Login[0].name}</h1>
+                    <h1>{Local.Login[0].name}</h1>
                     <DetailBar
-                    wid = "40%"
+                    wid = "45%"
                     />
                     <h1>{
                         IconsChange()
@@ -40,13 +61,15 @@ export default function TextAside(){
                 </div>
                 <div id="changeDesc">
 
-                    <p>{I.Login[0].desc}</p>
+                    <p>{Local.Login[0].desc}</p>
 
                 </div>
-                <div id="ButtonChange">
-                        <ButtonLogin text="Saiba Mais"/>
+                <div id="changeRate" className="text-4xl flex">
+                    {Stars()}
                 </div>
-                <div id="changeRate"></div>
+                <div id="ButtonChange">
+                        <ButtonLogin text="Saiba Mais" />
+                </div>
 
 
 

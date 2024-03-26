@@ -1,8 +1,12 @@
 .Bar
     height: 5px
+    border-radius: 10px
     background-color: black
 
+
+    
 .ButtonLogin
+    padding: 0 0 0 60px
     display: flex
     justify-content: space-between
     align-items: center
@@ -10,23 +14,50 @@
     z-index: 1
     width: 200px
     background-color: transparent
-    border-radius: 20px
     font-size: 1.5rem
-    font-family: "Lufga Regular"
+    font-family: "Lufga Medium"
     cursor: pointer
     color: black
     border: 2.5px solid black
     position: relative
     transition: border .3s ease
     border: none
+    .circleButton
+        
+        position: absolute
+        display: flex
+        align-items: center
+        justify-content: center
+        z-index: 2
+        height:100%
+        left: 0
+        width: 55px
+        background-color: black
+        border-radius: 40px
+        transition: .5s ease
+        #detailInsideButton
+            display: flex
+            align-items: center
+            justify-content: center
+            height: 80%
+            width: 95%
+            border: 2px solid black
+            border-radius: 20px
+            transition: .4s ease
+            #iconArrow
+                color: white
+
+    &:hover .circleButton
+        width: 120%
+        justify-content: center
+        
+    &:hover #detailInsideButton
+        border: 2px solid white
     
+        
+        
    
         
-    .circleButton
-        height: 100%
-        aspect-ratio: 1
-        background-color: white
-        border-radius: 100%
       
     
    

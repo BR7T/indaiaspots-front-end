@@ -12,6 +12,17 @@ form
         border-radius: 15px
         border: 2px solid #dcdcdc
         padding: 20px
+        font-size: 1.25rem
+        transition:  .3s ease
+        outline: 2px solid transparent
+        &:focus
+            border: 2px solid transparent
+            outline: 2px solid black
+
+        &::-webkit-input-placeholder
+            font-size: 1rem
+        
+        
         
         
 
@@ -24,7 +35,7 @@ form
         display: flex
         align-items: center
         justify-content: space-between
-        font-family: "Gilroy"
+        font-family: "Lufga Regular"
         width: 33%
     
     button
@@ -46,7 +57,7 @@ form
         p
             font-family: "Gilroy"
         &:hover
-            background: #b20000
+            background: #c20000
         &:hover #ArrowIcon
             transform: translateX(5px)  
     .inputIcons
@@ -57,7 +68,9 @@ form
         color: #707070
         font-family: "Lufga Regular"
         align-self: start
-        font-size: .9rem
+        transition: .4s ease
+        &:hover
+            box-shadow: 0 1px 0 0 #707070
 
         
 #formArea

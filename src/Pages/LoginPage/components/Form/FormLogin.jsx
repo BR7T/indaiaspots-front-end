@@ -8,18 +8,18 @@ export default function FormLogin(){
         <div id="formArea">
         <form action="post">
 
-            <label htmlFor="email">
+            <label htmlFor="email" className="text-base">
                 Email 
                 <BiUser className="inputIcons"/>
             </label>
 
             <input type="email" id="email" placeholder="Insira seu Email" autoComplete={"off"}/>
-            <label htmlFor="password">
+            <label htmlFor="password" className="text-base">
                 Senha
                 <MdPassword className="inputIcons"/>
             </label>
             <input type="password" id="password" placeholder="Insira sua senha"/>
-            <a href="#" id="forgotYP">Esqueceu sua senha?</a>
+            <a href="#" id="forgotYP" className="text-s">Esqueceu sua senha?</a>
 
 
             <button type="submit" ><p>Entrar</p> <IoIosArrowDropright id="ArrowIcon"/></button>
