@@ -1,0 +1,5 @@
+/serviceAccountKey.json
+/jwtSecret.json
+/PrivateKey.key
+**/node_modules
+
