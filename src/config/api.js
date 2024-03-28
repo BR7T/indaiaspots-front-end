@@ -1,3 +1,5 @@
+import { Navigate } from "react-router-dom"
+
 export default function GoogleSignInRequest(accessToken , email , username,isNewUser) {
     fetch('http://localhost:3100/user/googleSignIn', {   
         method : 'POST',
@@ -10,6 +12,9 @@ export default function GoogleSignInRequest(accessToken , email , username,isNew
         },
     }).then(response => response.json())
     .then(response => {
+        if(response.Accepted){
+            window.location.href = "/"
+        }
     })
 
     

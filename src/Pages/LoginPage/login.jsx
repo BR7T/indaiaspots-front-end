@@ -44,12 +44,11 @@ export default function Login(){
                                 const userEmail = userInfo.email;
                                 const username = userInfo.displayName;
                                 GoogleSignInRequest(token,userEmail,username,isNewUser)
-                                
-                                
-                                
                             })
                         }}>
-                            <button><IoLogoGoogle/> Continuar com o Google</button>
+                            <button
+
+                            ><IoLogoGoogle/> Continuar com o Google</button>
                         </div>
                     </div>
                     
