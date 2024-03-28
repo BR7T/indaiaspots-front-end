@@ -1,24 +1,17 @@
-import { Navigate } from "react-router-dom"
+import axios from 'axios';
+const apiUrl = 'http://localhost:3100';
 
-export default function GoogleSignInRequest(accessToken , email , username,isNewUser) {
-    fetch('http://localhost:3100/user/googleSignIn', {   
-        method : 'POST',
-        body : JSON.stringify({token : accessToken, email : email, username : username, isNewUser : isNewUser}),
-        mode: 'cors',
-        cache: 'default',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
-    }).then(response => response.json())
-    .then(response => {
-        if(response.Accepted){
-            console.log('ok')
-            
-            window.location.href = "/"
-            
-        }
-    })
+export function get(url) {
+    const response = axios.get(url);
+    return response;
+}
 
-    
+export async function post(url,body) {
+    const response = await axios.post(url, body);
+    return response;
+}
+
+export function GoogleSignInRequest(body) {
+    const res = axios.post(`${apiUrl}/user/googleSignIn`, body);
+    return res;
 }
