@@ -13,7 +13,9 @@ export default function GoogleSignInRequest(accessToken , email , username,isNew
     }).then(response => response.json())
     .then(response => {
         if(response.Accepted){
+            console.log('ok')
             window.location.href = "/"
+            
         }
     })
 
