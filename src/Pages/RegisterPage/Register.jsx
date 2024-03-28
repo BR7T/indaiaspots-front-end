@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Register.sass';
 
 
+
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
     name: '',
