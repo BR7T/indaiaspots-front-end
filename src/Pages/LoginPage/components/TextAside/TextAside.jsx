@@ -4,7 +4,8 @@ import { LuPartyPopper } from "react-icons/lu";
 import { IoRestaurant } from "react-icons/io5";
 import DetailBar from "../../../../standard/detailBar";
 import ButtonLogin from "../../../../standard/button";
-import { FaRegStarHalfStroke , FaStar , FaRegStar   } from "react-icons/fa6";
+import { IoIosStarOutline , IoIosStarHalf , IoIosStar  } from "react-icons/io";
+
 
 export default function TextAside(){
     function IconsChange(){
@@ -24,21 +25,23 @@ export default function TextAside(){
         nota > 5 ? nota = 5 : nota = nota
         let notacontrol = nota
         let Nota0 = [
-            <FaRegStar/>,<FaRegStar/>,<FaRegStar/>,<FaRegStar/>,<FaRegStar/>
+            <IoIosStarOutline key="1"/>,<IoIosStarOutline key="2"/>,<IoIosStarOutline key="3"/>,<IoIosStarOutline key="4"/>,<IoIosStarOutline key="5"/>
         ]
         for(let i = 0 ; i < nota ; i++){
 
             notacontrol -= 1
             if(notacontrol < 0){
-                Nota0.splice(i,1,<FaRegStarHalfStroke/>)
+                Nota0.splice(i,1,<IoIosStarHalf key={i}/>)
             }
             else{
-                Nota0.splice(i,1,<FaStar/>)
+                Nota0.splice(i,1,<IoIosStar key={i}/>)
             }
-            console.log(notacontrol)
+            
         }
         return Nota0
     }
+    
+    
 
     return(
         <article id="TextAside" >
@@ -76,7 +79,7 @@ export default function TextAside(){
 
             </div>
             <nav id="dotSelectedArea">
-                <div className="dotSelected"></div>
+                <div className="dotSelected selected"></div>
                 <div className="dotSelected"></div>
                 <div className="dotSelected"></div>
             </nav>

@@ -2,7 +2,13 @@
     "Login" : [{
         "name" : "Pezão" ,
           "type" :"food" ,
-           "desc" : "Melhor restaurante de Indaiatuba e região",
-           "rate" : "500"
-    }]
+           "desc" : "Melhor peixaria de Indaiatuba e região",
+           "rate" : "3.7"
+    },{
+        "name" : "Casa da Esfiha" ,
+        "type" :"food" ,
+        "desc" : "Melhor esfiharia de Indaiatuba e região",
+        "rate" : "4.2"
+    }
+]
 }
