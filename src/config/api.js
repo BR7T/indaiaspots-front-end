@@ -11,7 +11,18 @@ export async function post(url,body) {
     return response;
 }
 
-export function GoogleSignInRequest(body) {
-    const res = axios.post(`${apiUrl}/user/googleSignIn`, body);
+export function signInRequest(body) {
+    const res = axios.post(`${apiUrl}/user/signin`,body);
     return res;
 }
+
+export async function signUpRequest(body) {
+    const res = axios.post(`${apiUrl}/user/signup`,body);
+    return res;
+}
+
+export function GoogleSignInRequest(body) {
+    const res = axios.post(`${apiUrl}/user/googleSignIn`, body, {withCredentials: true});
+    return res;
+}
+

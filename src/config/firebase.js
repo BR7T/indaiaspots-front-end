@@ -1,7 +1,6 @@
-import { GoogleAuthProvider, signInWithPopup,getAdditionalUserInfo, signInWithRedirect } from "firebase/auth";
-
-import {initializeApp} from "firebase/app"
-import {getAuth} from "firebase/auth"
+import {initializeApp} from "firebase/app";
+import { GoogleAuthProvider, signInWithPopup,getAdditionalUserInfo, signInWithRedirect} from "firebase/auth";
+import {getAuth} from "firebase/auth";
 import { GoogleSignInRequest } from "./api";
 
 const firebaseConfig = {
@@ -28,9 +27,9 @@ export async function signInWithGoogle() {
         const username = userInfo.displayName;
         const body = {token : token, email : userEmail, username : username, isNewUser : isNewUser};
         GoogleSignInRequest(body).then(res => {
-            if(res.data.Accepted) {
+            /*if(res.data.Accepted) {
                 window.location.href = "/";
-            }
+            }*/
         })
     })
 }

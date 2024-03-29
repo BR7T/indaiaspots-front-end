@@ -3,22 +3,8 @@ import { BiUser } from "react-icons/bi";
 import { MdPassword } from "react-icons/md";
 import { IoIosArrowDropright } from "react-icons/io";
 import { useState } from "react";
-
-
-function SignUp(req){
-    fetch('http://localhost:3100/user/signup', {   
-        method : 'POST',
-        body : JSON.stringify({email : req.email , password : req.password}),
-        mode: 'cors',
-        cache: 'default',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
-    }).then(response => response.json())
-    .then(response => {
-    })
-}
+import { signInRequest } from "../../../../config/api";
+import {useNavigate} from "react-router-dom"
 
 
 export default function FormLogin(){
@@ -27,9 +13,15 @@ export default function FormLogin(){
         password : ""
     })
 
-    function Send(){
-        SignUp(Login)
-        console.log(Login)
+    const Navigate = useNavigate();
+    
+    function loginRequest(){
+        signInRequest(Login)
+        .then(res => {
+            if(res.data.process) {
+                Navigate("/");
+            }
+        })
     }
 
     return(
@@ -65,8 +57,8 @@ export default function FormLogin(){
 
 
             <button onClick={(e)=>{
-                e.preventDefault()
-                Send()
+                e.preventDefault();
+                loginRequest();
             }}>
                 <p>Entrar</p> <IoIosArrowDropright id="ArrowIcon"/>
             </button>
