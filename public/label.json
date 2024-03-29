@@ -9,6 +9,11 @@
         "type" :"food" ,
         "desc" : "Melhor esfiharia de Indaiatuba e região",
         "rate" : "4.2"
+    },{
+        "name" : "Grill Sul",
+        "type" : "food",
+        "desc" : "Churrascaria para quem é apaixonado por carne",
+        "rate" : "5"
     }
 ]
 }
