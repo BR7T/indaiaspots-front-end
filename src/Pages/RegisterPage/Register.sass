@@ -1,19 +1,19 @@
 .register-page
   height: 100%
   display: flex
-  flex-direction: column
+  flex-direction: row
   align-items: center
-  justify-content: center
+  justify-content: space-between
   background-image: url(./../../Image/Frame.svg)
   background-position: center
   background-repeat: no-repeat
   background-size: cover
   
-  padding: 20px
-  border-radius: 10px
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1)
+  padding: 0 8rem
+  
+  
 
-  h1
+  #titleForm
     font-size: 36px
     font-weight: bold
     margin-bottom: 50px
@@ -26,30 +26,41 @@
     align-items: center
     width: 600px
     background-color: #fff
-    padding: 20px
+    padding: 60px
     border-radius: 15px
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1)
-    margin-left: 1000px
+    
     justify-content: center
 
   label
-    font-size: 20px
-    font-weight: bold
-    margin-bottom: 10px
-    display: block
-    text-align: left
-    color: #333
+        align-self: start
+        bottom: 0
+        padding:0 6px
+        transform: translate(10px,15px)
+        background-color: white
+        display: flex
+        align-items: center
+        justify-content: space-between
+        font-family: "Lufga Regular"
+        width: 25%
+.inputIcons
+  font-size: 1.3rem
 
-  input[type="text"],
-  input[type="email"],
-  input[type="password"]
-    width: 100%
-    padding: 10px
-    margin-bottom: 20px
-    border: 1px solid #ccc
-    border-radius: 5px
-    font-size: 16px
-    color: #333
+  input
+        height: 50px
+        width: 100%
+        border-radius: 15px
+        border: 2px solid #dcdcdc
+        padding: 20px
+        font-size: 1.25rem
+        transition:  .3s ease
+        outline: 2px solid transparent
+        &:focus
+            border: 2px solid transparent
+            outline: 2px solid black
+
+        &::-webkit-input-placeholder
+            font-size: 1rem
 
   button[type="submit"]
     padding: 10px 20px
@@ -64,3 +75,40 @@
 
     &:hover
       background-color: #3e8e41
+  
+  
+   
+$corSubmit: #ff0000
+$corCancel: #ccc
+
+
+.containerBotao
+  display: flex
+  justify-content: space-between
+  gap: 20px
+
+  .botao
+    padding: 10px 20px
+    border-radius: 27px
+    cursor: pointer
+    outline: none
+    width: 10rem
+
+    &.cancel
+      background-color: $corCancel
+      color: #fff
+      border: none
+
+    &.textcolor
+      background-color: $corSubmit
+      color: #fff
+      border: none
+
+      
+    
+    
+
+
+
+   
+
