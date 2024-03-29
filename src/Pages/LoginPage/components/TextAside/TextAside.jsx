@@ -24,8 +24,8 @@ export default function TextAside(){
 
     
     
-    const [timeInterval , settimeInterval] = useState(4000)
-    const [currentDot, setcurrentDot] = useState(0)
+    const [timeInterval , settimeInterval] = useState(1000)
+    const [currentDot, setcurrentDot] = useState(1)
     function ChangeText(){
         
         
