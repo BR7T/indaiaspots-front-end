@@ -5,20 +5,7 @@ import { IoIosArrowDropright } from "react-icons/io";
 import { useState } from "react";
 
 
-function SignUp(req){
-    fetch('http://localhost:3100/user/signup', {   
-        method : 'POST',
-        body : JSON.stringify({email : req.email , password : req.password}),
-        mode: 'cors',
-        cache: 'default',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
-    }).then(response => response.json())
-    .then(response => {
-    })
-}
+
 
 
 export default function FormLogin(){
@@ -28,8 +15,8 @@ export default function FormLogin(){
     })
 
     function Send(){
-        SignUp(Login)
-        console.log(Login)
+        console.log(Login.email)
+        console.log(Login.password)
     }
 
     return(

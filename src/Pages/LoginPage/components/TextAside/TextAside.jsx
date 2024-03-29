@@ -5,9 +5,11 @@ import { IoRestaurant } from "react-icons/io5";
 import DetailBar from "../../../../standard/detailBar";
 import ButtonLogin from "../../../../standard/button";
 import { IoIosStarOutline , IoIosStarHalf , IoIosStar  } from "react-icons/io";
+import { useState , useEffect } from "react";
 
 
 export default function TextAside(){
+    
     function IconsChange(){
         switch(Local.Login[0].type){
             case "party":
@@ -20,8 +22,38 @@ export default function TextAside(){
         }
     }
 
+    
+    
+    const [timeInterval , settimeInterval] = useState(4000)
+    const [currentDot, setcurrentDot] = useState(0)
+    function ChangeText(){
+        
+        
+        
+        useEffect(()=>{
+            let AllDots = document.querySelectorAll(".dotSelected")
+            
+            const intervalo = setInterval(()=>{
+                setcurrentDot(currentDot+1)
+                
+                AllDots.forEach(dot=>{dot.classList.remove('selected')})
+                AllDots[currentDot % AllDots.length].classList.add("selected");
+                
+                if(currentDot >= AllDots.length -1){
+                    setcurrentDot(0)
+                }
+            },timeInterval)
+            
+            return () => clearInterval(intervalo);
+        },)
+        
+        
+        
+    }
+    
+    
     function Stars(){
-        let nota = Local.Login[0].rate 
+        let nota = Local.Login[currentDot].rate 
         nota > 5 ? nota = 5 : nota = nota
         let notacontrol = nota
         let Nota0 = [
@@ -40,9 +72,7 @@ export default function TextAside(){
         }
         return Nota0
     }
-    
-    
-
+    ChangeText()
     return(
         <article id="TextAside" >
             <div id="TitleTextAside">
@@ -53,7 +83,7 @@ export default function TextAside(){
             
                 <div id="changeName">
 
-                    <h1>{Local.Login[0].name}</h1>
+                    <h1>{Local.Login[currentDot].name}</h1>
                     <DetailBar
                     wid = "45%"
                     />
@@ -64,25 +94,23 @@ export default function TextAside(){
                 </div>
                 <div id="changeDesc">
 
-                    <p>{Local.Login[0].desc}</p>
+                    <p>{Local.Login[currentDot].desc}</p>
 
                 </div>
                 <div id="changeRate" className="text-4xl flex">
                     {Stars()}
                 </div>
-                <div id="ButtonChange">
+                <div id="ButtonChange" onMouseEnter={()=>{settimeInterval(99999999999999)}} onMouseLeave={()=>{settimeInterval(4000)}}>
                         <ButtonLogin text="Saiba Mais" />
                 </div>
 
-
-
-
             </div>
             <nav id="dotSelectedArea">
-                <div className="dotSelected selected"></div>
+                <div className="dotSelected"></div>
                 <div className="dotSelected"></div>
                 <div className="dotSelected"></div>
             </nav>
         </article>
     )
+    
 }
