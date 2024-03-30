@@ -7,6 +7,7 @@ import { BiUser } from "react-icons/bi";
 import { MdOutlineEmail } from "react-icons/md";
 import { MdPassword } from "react-icons/md";
 import TextAside from '../LoginPage/components/TextAside/TextAside';
+import { signInRequest, signUpRequest } from '../../config/api';
 
 
 
@@ -28,7 +29,6 @@ const RegisterPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form data:', formData);
-    
   };
 
   return (
@@ -81,10 +81,12 @@ const RegisterPage = () => {
         />
 
       
-      <div class="containerBotao wise">
-          <button id="btnGoBack" class="cancel botao" type="button" onClick={()=>{navigate("/")}}>Voltar</button>
+      <div className="containerBotao wise">
+          <button id="btnGoBack" className="cancel botao" type="button" onClick={()=>{navigate("/")}}>Voltar</button>
           
-          <button id="submit" class="textcolor botao" type="button">
+          <button id="submit" className="textcolor botao" type="button" onClick={(e)=>{
+            signUpRequest(formData);
+          }}>
             Avançar</button>
         
         </div>

@@ -3,6 +3,8 @@ import { BiUser } from "react-icons/bi";
 import { MdPassword } from "react-icons/md";
 import { IoIosArrowDropright } from "react-icons/io";
 import { useState } from "react";
+import { GoogleSignInRequest } from "../../../../config/api";
+import { signInWithGoogle } from "../../../../config/firebase";
 
 
 
@@ -14,10 +16,7 @@ export default function FormLogin(){
         password : ""
     })
 
-    function Send(){
-        console.log(Login.email)
-        console.log(Login.password)
-    }
+
 
     return(
     <div id="formArea">
@@ -53,7 +52,8 @@ export default function FormLogin(){
 
             <button onClick={(e)=>{
                 e.preventDefault()
-                Send()
+                signInWithGoogle(Login);
+                console.log(Login);
             }}>
                 <p>Entrar</p> <IoIosArrowDropright id="ArrowIcon"/>
             </button>
