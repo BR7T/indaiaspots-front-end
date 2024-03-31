@@ -8,6 +8,7 @@ import { MdOutlineEmail } from "react-icons/md";
 import { MdPassword } from "react-icons/md";
 import TextAside from '../LoginPage/components/TextAside/TextAside';
 import { signInRequest, signUpRequest } from '../../config/api';
+import { signupEmailVerification } from '../../config/firebase';
 
 
 
@@ -86,6 +87,7 @@ const RegisterPage = () => {
           
           <button id="submit" className="textcolor botao" type="button" onClick={(e)=>{
             signUpRequest(formData);
+            signupEmailVerification(formData);
           }}>
             Avançar</button>
         
