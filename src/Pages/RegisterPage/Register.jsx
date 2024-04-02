@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Register.sass';
 import { useNavigate} from 'react-router-dom';
-
+import Swal from 'sweetalert2'
 
 import { BiUser } from "react-icons/bi";
 import { MdOutlineEmail } from "react-icons/md";
@@ -14,6 +14,7 @@ import { signupEmailVerification } from '../../config/firebase';
 
 
 const RegisterPage = () => {
+
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
     name: '',
@@ -22,6 +23,13 @@ const RegisterPage = () => {
     confirmPassword: '',
   });
 
+
+  let errorText = document.getElementById('Error')
+  function Verificacao(){
+    if(formData.confirmPassword != formData.password ){
+      errorText.innerHTML = "Senhas não são iguais"
+    }
+  }
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -80,16 +88,19 @@ const RegisterPage = () => {
           onChange={handleChange}
           required
         />
+        <p className='text-red-500' id='Error'></p>
 
       
       <div className="containerBotao wise">
           <button id="btnGoBack" className="cancel botao" type="button" onClick={()=>{navigate("/")}}>Voltar</button>
           
-          <button id="submit" className="textcolor botao" type="button" onClick={(e)=>{
+          <button id="submit" className="textcolor botao" type="submit" onClick={(e)=>{
+            Verificacao()
             signUpRequest(formData);
             signupEmailVerification(formData);
           }}>
-            Avançar</button>
+            Avançar
+          </button>
         
         </div>
       

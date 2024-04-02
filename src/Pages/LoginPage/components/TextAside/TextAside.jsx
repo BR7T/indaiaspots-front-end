@@ -23,8 +23,10 @@ export default function TextAside(){
     }
 
     
+
     
-    const [timeInterval , settimeInterval] = useState(1000)
+    
+    const [timeInterval , settimeInterval] = useState(3000)
     const [currentDot, setcurrentDot] = useState(1)
     function ChangeText(){
         
@@ -100,7 +102,7 @@ export default function TextAside(){
                 <div id="changeRate" className="text-4xl flex">
                     {Stars()}
                 </div>
-                <div id="ButtonChange" onMouseEnter={()=>{settimeInterval(99999999999999)}} onMouseLeave={()=>{settimeInterval(4000)}}>
+                <div id="ButtonChange" onMouseEnter={()=>{settimeInterval(99999999999999)}} onMouseLeave={()=>{settimeInterval(3000)}}>
                         <ButtonLogin text="Saiba Mais" />
                 </div>
 

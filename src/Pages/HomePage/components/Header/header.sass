@@ -32,7 +32,7 @@ header
            
 
     #BuscaArea 
-        flex: 2
+        flex: 5
         width: 100%
         height: 100%
         display: flex
@@ -40,32 +40,47 @@ header
 
     input[type="text"] 
         width: 70%
-        height: 75%
+        height: 100%
         padding: 10px
         border: 1px solid #ccc
-        border-radius: 5px
+        border-radius: 20px
         font-size: 16px
         margin-right: 10px
+        outline: 2px solid transparent
+        transition: .3s ease
+        &:focus
+            
+            outline: 2px solid red
+
+
+        
   
 
-    button 
-        height: 75%
-        padding: 10px 20px
-        background-color: #4caf50
+    #searchButton 
+        aspect-ratio: 1
+        font-size: 1.3rem
         border: none
         color: white
-        border-radius: 5px
+        border-radius: 100%
         display: flex
         align-items: center
         justify-content: center
-        gap: 10px
-        height: 90%
+        
+        height: 100%
 
-        button
-            display: flex
-            flex-direction: row
-            align-items: center
-            justify-content: center
-            height: 110%
-            width: 30%
-            
+    
+#SignInSignUp
+    display: flex
+    justify-content: center
+    height: 100%
+    flex: 1
+    width: 100%
+    gap: 10px
+    button
+        display: flex
+        flex-direction: row
+        align-items: center
+        justify-content: center
+        width: 100%
+        
+        
