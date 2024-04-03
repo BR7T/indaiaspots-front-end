@@ -35,18 +35,18 @@ export default function TextAside(){
         useEffect(()=>{
             let AllDots = document.querySelectorAll(".dotSelected")
             
-            const intervalo = setInterval(()=>{
-                setcurrentDot(currentDot+1)
+            // const intervalo = setInterval(()=>{
+            //     setcurrentDot(currentDot+1)
                 
-                AllDots.forEach(dot=>{dot.classList.remove('selected')})
-                AllDots[currentDot % AllDots.length].classList.add("selected");
+            //     AllDots.forEach(dot=>{dot.classList.remove('selected')})
+            //     AllDots[currentDot % AllDots.length].classList.add("selected");
                 
-                if(currentDot >= AllDots.length -1){
-                    setcurrentDot(0)
-                }
-            },timeInterval)
+            //     if(currentDot >= AllDots.length -1){
+            //         setcurrentDot(0)
+            //     }
+            // },timeInterval)
             
-            return () => clearInterval(intervalo);
+            // return () => clearInterval(intervalo);
         },)
         
         
@@ -75,6 +75,17 @@ export default function TextAside(){
         return Nota0
     }
     ChangeText()
+
+
+
+    let RestArea = document.getElementById('ChangeLocationsMargin')
+    function Slide(){
+        RestArea.style.display = "none"
+    }
+    
+
+
+
     return(
         <article id="TextAside" >
             <div id="TitleTextAside">
@@ -82,30 +93,31 @@ export default function TextAside(){
             </div>
             
             <div id="ChangeLocations">
-            
-                <div id="changeName">
+                <div id="ChangeLocationsMargin">
+                    <div id="changeName">
 
-                    <h1>{Local.Login[currentDot].name}</h1>
-                    <DetailBar
-                    wid = "45%"
-                    />
-                    <h1>{
-                        IconsChange()
-                        }</h1>
+                        <h1>{Local.Login[currentDot].name}</h1>
+                        <DetailBar
+                        wid = "45%"
+                        />
+                        <h1>{
+                            IconsChange()
+                            }</h1>
+
+                    </div>
+                    <div id="changeDesc">
+
+                        <p>{Local.Login[currentDot].desc}</p>
+
+                    </div>
+                    <div id="changeRate" className="text-4xl flex">
+                        {Stars()}
+                    </div>
+                    <div id="ButtonChange" onMouseEnter={()=>{settimeInterval(99999999999999)}} onMouseLeave={()=>{settimeInterval(3000)}}>
+                            <ButtonLogin text="Saiba Mais" />
+                    </div>
 
                 </div>
-                <div id="changeDesc">
-
-                    <p>{Local.Login[currentDot].desc}</p>
-
-                </div>
-                <div id="changeRate" className="text-4xl flex">
-                    {Stars()}
-                </div>
-                <div id="ButtonChange" onMouseEnter={()=>{settimeInterval(99999999999999)}} onMouseLeave={()=>{settimeInterval(3000)}}>
-                        <ButtonLogin text="Saiba Mais" />
-                </div>
-
             </div>
             <nav id="dotSelectedArea">
                 <div className="dotSelected"></div>
