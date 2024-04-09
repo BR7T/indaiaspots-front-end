@@ -34,7 +34,7 @@ export default function Header(){
                     Cadastre-se
                 </button>
 
-                <button className='border-2 border-red-600 bg-white rounded-lg hover:bg-red-600 hover:text-white text-red-600 transition ease-in-out duration-300 font-semibold'
+                <button className=' border-white bg-white rounded-lg hover:border-red-600 border-2 hover:text-black   transition ease-in-out duration-300 font-semibold'
                  onClick={()=>{
                         navigate("/login")
                     }

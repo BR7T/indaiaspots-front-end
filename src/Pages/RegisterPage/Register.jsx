@@ -11,6 +11,8 @@ import { signInWithGoogle } from "../../config/firebase";
 import TextAside from "../LoginPage/components/TextAside/TextAside";
 import FooterLogin from "../LoginPage/components/Footer/footerLogin";
 import FormRegister from "./components/FormRegister/FormRegister";
+import { IoMdArrowRoundBack } from "react-icons/io";
+import BackButton from "../../standard/LoginComponents/BackButton";
 
 
 
@@ -29,6 +31,7 @@ export default function Register(){
                 <main id="mainRegister" className="w-2/5 h-2/3 rounded-xl  ">
                     
                     <div id="RegisterArea" className=" justify-center h-full" >
+                        <BackButton/>
                         
                         <div id="title">  
                             <h1 className="text-5xl text-start">Cadastre-se</h1>

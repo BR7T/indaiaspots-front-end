@@ -2,8 +2,8 @@ import "./TextAside.sass";
 import Local from "../../../../../public/label.json"
 import { LuPartyPopper } from "react-icons/lu";
 import { IoRestaurant } from "react-icons/io5";
-import DetailBar from "../../../../standard/detailBar";
-import ButtonLogin from "../../../../standard/button";
+import DetailBar from "../../../../standard/LoginComponents/detailBar";
+import ButtonLogin from "../../../../standard/LoginComponents/button";
 import { IoIosStarOutline , IoIosStarHalf , IoIosStar  } from "react-icons/io";
 import { useState , useEffect } from "react";
 
@@ -35,18 +35,18 @@ export default function TextAside(){
         useEffect(()=>{
             let AllDots = document.querySelectorAll(".dotSelected")
             
-            // const intervalo = setInterval(()=>{
-            //     setcurrentDot(currentDot+1)
+            const intervalo = setInterval(()=>{
+                setcurrentDot(currentDot+1)
                 
-            //     AllDots.forEach(dot=>{dot.classList.remove('selected')})
-            //     AllDots[currentDot % AllDots.length].classList.add("selected");
+                AllDots.forEach(dot=>{dot.classList.remove('selected')})
+                AllDots[currentDot % AllDots.length].classList.add("selected");
                 
-            //     if(currentDot >= AllDots.length -1){
-            //         setcurrentDot(0)
-            //     }
-            // },timeInterval)
+                if(currentDot >= AllDots.length -1){
+                    setcurrentDot(0)
+                }
+            },timeInterval)
             
-            // return () => clearInterval(intervalo);
+            return () => clearInterval(intervalo);
         },)
         
         

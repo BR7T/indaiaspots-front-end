@@ -22,7 +22,7 @@ export default function FormRegister(){
 
     return(
     <div id="formArea">
-        <form action="post">
+        <form id="formRegister"action="post">
 
             <label htmlFor="email" className="text-base">
                 Email 

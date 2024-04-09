@@ -20,7 +20,7 @@ export default function FormLogin(){
 
     return(
     <div id="formArea">
-        <form action="post">
+        <form id="formLogin" action="post">
 
             <label htmlFor="email" className="text-base">
                 Email 
