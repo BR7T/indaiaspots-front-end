@@ -25,3 +25,9 @@ export function signUpRequest(body) {
     const res = axios.post(`${apiUrl}/user/signup`, body, {withCredentials : true});
     return res;
 }
+
+export function SignUpRestaurant(body){
+    const res = axios.post(`${apiUrl}/restaurant/addRestaurant`, body, {withCredentials : true});
+    console.log(res)
+    return res;
+}
