@@ -3,7 +3,7 @@ import { BiUser } from "react-icons/bi";
 import { MdPassword , MdDriveFileRenameOutline } from "react-icons/md";
 import { IoIosArrowDropright } from "react-icons/io";
 import { useState } from "react";
-import { GoogleSignInRequest } from "../../../../config/api";
+import { GoogleSignInRequest , signUpRequest } from "../../../../config/api";
 import { signInWithGoogle } from "../../../../config/firebase";
 
 
@@ -73,7 +73,7 @@ export default function FormRegister(){
 
             <button onClick={(e)=>{
                 e.preventDefault()
-                signInWithGoogle(Register);
+                signUpRequest(Register);
                 console.log(Register);
             }}>
                 <p>Entrar</p> <IoIosArrowDropright id="ArrowIcon"/>

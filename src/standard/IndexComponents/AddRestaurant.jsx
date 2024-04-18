@@ -1,5 +1,5 @@
 import { useNavigate , Navigate} from "react-router-dom"
-import "./IndexComponents.sass"
+
 
 
 export default function ButtonAdd(){
@@ -7,7 +7,7 @@ export default function ButtonAdd(){
 
 
     return(
-        <button id="AddButton" onClick={()=>{
+        <button id="AddButton" className='border-white bg-white rounded-lg hover:border-red-600 border-2 hover:text-black   transition ease-in-out duration-300 font-semibold h-full p-2'onClick={()=>{
                     Navigate("/restaurant/add")
         }}>
             Adicione seu restaurante

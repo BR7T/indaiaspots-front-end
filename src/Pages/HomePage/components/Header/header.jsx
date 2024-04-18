@@ -2,6 +2,7 @@ import Images from "../../../../../public/Image/images"
 import "./header.sass"
 import { IoSearch } from "react-icons/io5";
 import { useNavigate } from "react-router"
+import ButtonAdd from "../../../../standard/IndexComponents/AddRestaurant";
 
 
 
@@ -9,7 +10,7 @@ import { useNavigate } from "react-router"
 export default function Header(){
     let navigate = useNavigate()
     return(
-        <header className="shadow-sm">
+        <header className="shadow-sm gap-2">
 
             <div id="LogoArea" className="display-flex">
                 <div id="LogoHeader">
@@ -42,7 +43,7 @@ export default function Header(){
                     Login
                 </button>
             </div>
-            
+            <ButtonAdd/>
         </header>
     )
 }
