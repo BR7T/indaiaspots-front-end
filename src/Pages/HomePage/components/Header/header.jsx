@@ -2,6 +2,7 @@ import Images from "../../../../../public/Image/images"
 import "./header.sass"
 import { IoSearch } from "react-icons/io5";
 import { useNavigate } from "react-router"
+import ButtonAdd from "../../../../standard/IndexComponents/AddRestaurant";
 
 
 
@@ -9,7 +10,7 @@ import { useNavigate } from "react-router"
 export default function Header(){
     let navigate = useNavigate()
     return(
-        <header className="shadow-sm">
+        <header className="shadow-sm gap-2">
 
             <div id="LogoArea" className="display-flex">
                 <div id="LogoHeader">
@@ -34,7 +35,7 @@ export default function Header(){
                     Cadastre-se
                 </button>
 
-                <button className='border-2 border-red-600 bg-white rounded-lg hover:bg-red-600 hover:text-white text-red-600 transition ease-in-out duration-300 font-semibold'
+                <button className=' border-white bg-white rounded-lg hover:border-red-600 border-2 hover:text-black   transition ease-in-out duration-300 font-semibold'
                  onClick={()=>{
                         navigate("/login")
                     }
@@ -42,7 +43,7 @@ export default function Header(){
                     Login
                 </button>
             </div>
-            
+            <ButtonAdd/>
         </header>
     )
 }

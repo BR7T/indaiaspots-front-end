@@ -2,8 +2,8 @@ import "./TextAside.sass";
 import Local from "../../../../../public/label.json"
 import { LuPartyPopper } from "react-icons/lu";
 import { IoRestaurant } from "react-icons/io5";
-import DetailBar from "../../../../standard/detailBar";
-import ButtonLogin from "../../../../standard/button";
+import DetailBar from "../../../../standard/LoginComponents/detailBar";
+import ButtonLogin from "../../../../standard/LoginComponents/button";
 import { IoIosStarOutline , IoIosStarHalf , IoIosStar  } from "react-icons/io";
 import { useState , useEffect } from "react";
 
@@ -75,6 +75,17 @@ export default function TextAside(){
         return Nota0
     }
     ChangeText()
+
+
+
+    let RestArea = document.getElementById('ChangeLocationsMargin')
+    function Slide(){
+        RestArea.style.display = "none"
+    }
+    
+
+
+
     return(
         <article id="TextAside" >
             <div id="TitleTextAside">
@@ -82,30 +93,31 @@ export default function TextAside(){
             </div>
             
             <div id="ChangeLocations">
-            
-                <div id="changeName">
+                <div id="ChangeLocationsMargin">
+                    <div id="changeName">
 
-                    <h1>{Local.Login[currentDot].name}</h1>
-                    <DetailBar
-                    wid = "45%"
-                    />
-                    <h1>{
-                        IconsChange()
-                        }</h1>
+                        <h1>{Local.Login[currentDot].name}</h1>
+                        <DetailBar
+                        wid = "45%"
+                        />
+                        <h1>{
+                            IconsChange()
+                            }</h1>
+
+                    </div>
+                    <div id="changeDesc">
+
+                        <p>{Local.Login[currentDot].desc}</p>
+
+                    </div>
+                    <div id="changeRate" className="text-4xl flex">
+                        {Stars()}
+                    </div>
+                    <div id="ButtonChange" onMouseEnter={()=>{settimeInterval(99999999999999)}} onMouseLeave={()=>{settimeInterval(3000)}}>
+                            <ButtonLogin text="Saiba Mais" />
+                    </div>
 
                 </div>
-                <div id="changeDesc">
-
-                    <p>{Local.Login[currentDot].desc}</p>
-
-                </div>
-                <div id="changeRate" className="text-4xl flex">
-                    {Stars()}
-                </div>
-                <div id="ButtonChange" onMouseEnter={()=>{settimeInterval(99999999999999)}} onMouseLeave={()=>{settimeInterval(3000)}}>
-                        <ButtonLogin text="Saiba Mais" />
-                </div>
-
             </div>
             <nav id="dotSelectedArea">
                 <div className="dotSelected"></div>

@@ -8,8 +8,9 @@ import "./login.sass"
 import Images from "../../../public/Image/images";
 import FooterLogin from "./components/Footer/footerLogin";
 import Header from "../HomePage/components/Header/header";
-import TextAside from "./components/TextAside/TextAside";
 import { signInWithGoogle } from "../../config/firebase";
+import BackButton from "../../standard/LoginComponents/BackButton";
+import TextAside from "./components/TextAside/TextAside";
 
 
 
@@ -29,6 +30,7 @@ export default function Login(){
                         <div id="title">  
                             <h1 className="text-5xl text-start">Login</h1>
                         </div>
+                        <BackButton position='right'/>
                         
                         <FormLogin/>
                         <p>Ou</p>
