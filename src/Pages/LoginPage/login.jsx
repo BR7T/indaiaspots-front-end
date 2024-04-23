@@ -42,10 +42,10 @@ export default function Login(){
                     
 
                 </main>
+               
                 <aside id="TextAsideArea">
                     <TextAside/>
                 </aside>
-
             </div>
             
             <FooterLogin/>

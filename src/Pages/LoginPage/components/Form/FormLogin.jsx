@@ -3,8 +3,8 @@ import { BiUser } from "react-icons/bi";
 import { MdPassword } from "react-icons/md";
 import { IoIosArrowDropright } from "react-icons/io";
 import { useState } from "react";
-import { signInRequest } from "../../../../config/api";
-import {useNavigate} from "react-router-dom"
+import { GoogleSignInRequest } from "../../../../config/api";
+import { signInWithGoogle } from "../../../../config/firebase";
 
 
 export default function FormLogin(){
@@ -13,15 +13,9 @@ export default function FormLogin(){
         password : ""
     })
 
-    const Navigate = useNavigate();
-    
-    function loginRequest(){
-        signInRequest(Login)
-        .then(res => {
-            if(res.data.process) {
-                Navigate("/");
-            }
-        })
+    function Send(){
+        SignUp(Login)
+        console.log(Login)
     }
 
     return(
@@ -57,8 +51,9 @@ export default function FormLogin(){
 
 
             <button onClick={(e)=>{
-                e.preventDefault();
-                loginRequest();
+                e.preventDefault()
+                signInWithGoogle(Login);
+                console.log(Login);
             }}>
                 <p>Entrar</p> <IoIosArrowDropright id="ArrowIcon"/>
             </button>

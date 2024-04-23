@@ -1,6 +1,6 @@
-import {initializeApp} from "firebase/app";
-import { GoogleAuthProvider, signInWithPopup,getAdditionalUserInfo, signInWithRedirect} from "firebase/auth";
-import {getAuth} from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup,getAdditionalUserInfo, createUserWithEmailAndPassword, sendEmailVerification} from "firebase/auth";
+import {initializeApp} from "firebase/app"
+import {getAuth} from "firebase/auth"
 import { GoogleSignInRequest } from "./api";
 
 const firebaseConfig = {
@@ -13,8 +13,8 @@ const firebaseConfig = {
     measurementId: "G-J88X10QKDT"
 }
 
-const app = initializeApp(firebaseConfig)
-const auth = getAuth(app)
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
 export async function signInWithGoogle() {
@@ -32,4 +32,9 @@ export async function signInWithGoogle() {
             }*/
         })
     })
+}
+
+export async function signupEmailVerification(data) {
+    const userCredentials = await createUserWithEmailAndPassword(auth,data.email,data.password);
+    sendEmailVerification(userCredentials.user);
 }

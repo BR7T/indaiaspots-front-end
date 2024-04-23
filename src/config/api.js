@@ -22,7 +22,17 @@ export async function signUpRequest(body) {
 }
 
 export function GoogleSignInRequest(body) {
-    const res = axios.post(`${apiUrl}/user/googleSignIn`, body, {withCredentials: true});
+    const res = axios.post(`${apiUrl}/user/googleSignIn`, body, {withCredentials : true});
+    return res;
+}
+
+export function signInRequest(body) {
+    const res = axios.post(`${apiUrl}/user/signin`, body ,{withCredentials : true});
+    return res;
+}
+
+export function signUpRequest(body) {
+    const res = axios.post(`${apiUrl}/user/signup`, body, {withCredentials : true});
     return res;
 }
 

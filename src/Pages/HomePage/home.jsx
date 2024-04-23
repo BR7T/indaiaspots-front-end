@@ -8,8 +8,7 @@ function Home(){
         <div id="HOME">
             <Header/>
             <main>
-                <h1>Home Page</h1>
-                <Link to="/login">Login</Link>
+                
             </main>
         </div>
     )
