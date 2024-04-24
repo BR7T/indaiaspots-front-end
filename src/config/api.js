@@ -1,4 +1,5 @@
 import axios from 'axios';
+axios.defaults.headers.put['Access-Control-Allow-Origin'] = '*';
 const apiUrl = 'http://localhost:3100';
 
 export function get(url) {
@@ -9,16 +10,6 @@ export function get(url) {
 export async function post(url,body) {
     const response = await axios.post(url, body);
     return response;
-}
-
-export function signInRequest(body) {
-    const res = axios.post(`${apiUrl}/user/signin`,body);
-    return res;
-}
-
-export async function signUpRequest(body) {
-    const res = axios.post(`${apiUrl}/user/signup`,body);
-    return res;
 }
 
 export function GoogleSignInRequest(body) {
@@ -34,11 +25,10 @@ export function signInRequest(body) {
 }
 
 export function signUpRequest(body) {
-    
     const res = axios.post(`${apiUrl}/user/signup`, body, {withCredentials : true});
     if(res.catch(200)){
         window.location.href = '/'
-        }
+    }
 }
 
 export function SignUpRestaurant(body){
@@ -51,4 +41,9 @@ export function getRestaurants(){
     const res = axios.get(`${apiUrl}/restaurant/getRestaurants` , {withCredentials : true});
     console.log(res)
     return res
+}
+
+export function preSignedUrlUpload(url,file) {
+    const res = axios.put(url, file, {withCredentials : true});
+    console.log("successful");
 }
