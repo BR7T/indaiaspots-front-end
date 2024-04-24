@@ -44,6 +44,8 @@ export function getRestaurants(){
 }
 
 export function preSignedUrlUpload(url,file) {
-    const res = axios.put(url, file, {withCredentials : true});
+    const res = axios.put(url, file, { headers: {'Content-Type': file.type }}).then(() => {
+        res.send({process : true});
+    })
     console.log("successful");
 }
