@@ -4,6 +4,9 @@
     border-radius: 24px
     justify-content: space-around
     
+    @media screen and (max-width: 768px) 
+        height: 100%
+
     
     #FORMRegister
         display: flex
@@ -23,8 +26,11 @@
     .InputRestaurant
         border: 2px solid #6e6e6e30
         height: 3rem
-        font-size: 1.3rem
+        font-size: 1rem
         padding: 10px
+        @media screen and (min-width: 768px) 
+            font-size: 1.3rem
+            
         
         width: 100%
         border-radius: 10px
@@ -37,5 +43,19 @@
             border: 2px solid #69b4ffce
 
 
-            
-            
+    #eyePassword
+        aspect-ratio: 1
+        height: 100%
+        display: flex
+        align-items: center
+        justify-content: center
+    
+
+input[type = number]
+    -moz-appearance: textfield
+    appearance: textfield
+    
+    &::-webkit-inner-spin-button
+        -webkit-appearance: none
+    
+    

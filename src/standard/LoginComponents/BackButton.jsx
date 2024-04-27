@@ -11,7 +11,7 @@ export default function BackButton(props){
         if(props.position === 'right'){
             document.getElementById('BackPageBtn').classList.add('right-8')
         }else{
-            document.getElementById('BackPageBtn').classList.add('left-8')
+            document.getElementById('BackPageBtn').classList.add('right-8')
             
         }
     },[])
