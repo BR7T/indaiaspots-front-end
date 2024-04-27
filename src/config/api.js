@@ -2,15 +2,6 @@ import axios from 'axios';
 axios.defaults.headers.put['Access-Control-Allow-Origin'] = '*';
 const apiUrl = 'http://localhost:3100';
 
-export function get(url) {
-    const response = axios.get(url);
-    return response;
-}
-
-export async function post(url,body) {
-    const response = await axios.post(url, body);
-    return response;
-}
 
 export function GoogleSignInRequest(body) {
     const res = axios.post(`${apiUrl}/user/googleSignIn`, body, {withCredentials : true});
@@ -18,9 +9,7 @@ export function GoogleSignInRequest(body) {
 }
 
 export function signInRequest(body) {
-    console.log("ok")
     const res = axios.post(`${apiUrl}/user/signin`, body ,{withCredentials : true});
-    console.log(body)
     return res;
 }
 
@@ -39,13 +28,25 @@ export function SignUpRestaurant(body){
 
 export function getRestaurants(){
     const res = axios.get(`${apiUrl}/restaurant/getRestaurants` , {withCredentials : true});
-    console.log(res)
-    return res
+    return res;
 }
 
-export function preSignedUrlUpload(url,file) {
-    const res = axios.put(url, file, { headers: {'Content-Type': file.type }}).then(() => {
-        res.send({process : true});
+export function getPreSignedUrl(filename) {
+    const res = axios.get(`${apiUrl}/restaurant/addRestaurant?filename=${filename}`, {withCredentials : true});
+    return res;
+}
+
+export function preSignedUrlImageUpload(url,file) {
+    axios.put(url, file, { headers: {'Content-Type': file.type }}).then((res) => {
+        if(res) console.log(res);
+        else {
+            console.log("Erro ao dar upload na imagem");
+        }
     })
     console.log("successful");
+}
+
+export function addImage(body) {
+    const res = axios.post(`${apiUrl}/restaurant/addImage`, body , {withCredentials : true});
+    console.log(res);
 }
