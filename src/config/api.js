@@ -30,6 +30,27 @@ export function getRestaurants(){
     const res = axios.get(`${apiUrl}/restaurant/getRestaurants` , {withCredentials : true});
     return res;
 }
+//novo testando
+export const updateRestaurant = async (restaurantId, updatedData) => {
+    try {
+        const res = await axios.put(`${apiUrl}/restaurant/${restaurantId}`, updatedData, { withCredentials: true });
+        return res.data.message || "Restaurante atualizado com sucesso";
+    } catch (error) {
+        console.error("Erro ao atualizar restaurante:", error);
+        throw error.response.data.error || "Erro interno do servidor";
+    }
+};
+
+export const deleteRestaurant = async (restaurantId) => {
+    try {
+        const res = await axios.delete(`${apiUrl}/restaurant/${restaurantId}`, { withCredentials: true });
+        return res.data.message || "Restaurante excluído com sucesso";
+    } catch (error) {
+        console.error("Erro ao excluir restaurante:", error);
+        throw error.response.data.error || "Erro interno do servidor";
+    }
+};
+//novo testando
 
 export function getPreSignedUrl(filename) {
     const res = axios.get(`${apiUrl}/restaurant/addRestaurant?filename=${filename}`, {withCredentials : true});
