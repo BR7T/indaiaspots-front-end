@@ -37,7 +37,8 @@ export function SignUpRestaurant(body){
     return res;
 }
 
-export function getRestaurants(){
+export function getAllRestaurants(){
+    
     const res = axios.get(`${apiUrl}/restaurant/getRestaurants` , {withCredentials : true});
     console.log(res)
     return res

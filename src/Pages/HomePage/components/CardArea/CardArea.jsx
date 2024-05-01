@@ -1,5 +1,6 @@
 import { useState , useEffect } from "react"
-import { getRestaurants } from "../../../../config/api"
+import { Link, useParams } from "react-router-dom"
+import { getAllRestaurants } from "../../../../config/api"
 import "./CardArea.sass"
 
 
@@ -8,10 +9,9 @@ export default function CardArea(){
     
     const [Restaurantes, setRestaurantes] = useState([])
     useEffect(() => {
-        getRestaurants().then((r)=>{
+        getAllRestaurants().then(r=>{
           setRestaurantes(r.data)}
           )
-      console.log(Restaurantes)
     }, [])
     
     console.table(Restaurantes)
@@ -20,6 +20,8 @@ export default function CardArea(){
             {Restaurantes && Restaurantes.map((Res , index)=>{
                 let nome = Res.Nome
                 let dia = Res.Dia_Atendimento  
+                let id = Res.ID_Restaurante
+                
                 
                 return(
                     
@@ -38,6 +40,8 @@ export default function CardArea(){
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                         </svg>
                     </a>
+                    
+                    <Link to={`/teste/${id}`}>Testinho</Link>
                 </div>
             </div>
 
