@@ -49,3 +49,11 @@ export function getRestaurant(id){
     console.log(res)    
     return res
 }
+
+export function ConsultaCNPJ(cnpj){
+    const urlCNPJ = `https://receitaws.com.br/v1/cnpj/${cnpj}`
+    const res = axios.get(urlCNPJ ,  {withCredentials : true})
+    console.log(res)
+    return res
+
+}

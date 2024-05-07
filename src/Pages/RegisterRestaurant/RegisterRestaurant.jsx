@@ -4,16 +4,26 @@ import RegisterRestaurantFormArea from "./components/FormRestaurantRegister/Regi
 import "./RegisterRestaurant.sass"
 
 export default function ResgisterRestaurant(){
-    const [NEXT, setNEXT] = useState(false)
+    const [NEXT, setNEXT] = useState(0)
     const navigate = useNavigate()
 
 
     useEffect(()=>{
         console.log(NEXT)
-        if(!NEXT){
-            navigate('/restaurant/add/')
-        }else{
-            navigate('/restaurant/add/address')
+        // if(!NEXT){
+        //     navigate('/restaurant/add/')
+        // }else{
+        //     navigate('/restaurant/add/address')
+        // }
+        switch (NEXT) {
+            case 0:
+                navigate('/restaurant/add/')
+                break;
+            case 1:
+                navigate('/restaurant/add/address')
+                break
+            default:
+                break;
         }
     },[NEXT])
 

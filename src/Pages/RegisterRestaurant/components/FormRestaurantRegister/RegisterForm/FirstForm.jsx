@@ -100,9 +100,9 @@ export default function FirstForm({LoginComp, NEXT ,setNEXT}) {
         }else if(DataPassword == false){
             console.log('Senha não é válida')
         }else{
-            setNEXT(true)
+            setNEXT(1)
             console.log('login concluido')
-            window.location.href = '/restaurant/add/address'
+            
             
         }
     }   

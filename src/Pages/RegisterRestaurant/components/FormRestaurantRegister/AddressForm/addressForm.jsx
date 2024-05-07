@@ -1,4 +1,5 @@
 import { useEffect , useState } from "react"
+import { ConsultaCNPJ } from "../../../../../config/api"
 
 
 export default function AddressForm(){
@@ -58,7 +59,11 @@ export default function AddressForm(){
                     </div>
                 </div>
             </form>
-           
+           <button onClick={()=>{
+            ConsultaCNPJ(Address.CNPJ)
+           }}>
+            consulta cnpj
+           </button>
 
 
                 <button type="button" className="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-large rounded-lg text-sm px-10 py-4 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-600 dark:focus:ring-red-800  self-end" onClick={()=>{Validation()}}>
