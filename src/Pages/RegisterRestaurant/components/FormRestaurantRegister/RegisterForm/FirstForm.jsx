@@ -1,12 +1,21 @@
 import { useEffect, useState } from "react";
 import { PiEyeBold, PiEyeClosedBold } from "react-icons/pi";
+import { useNavigate } from "react-router-dom";
 
-export default function FirstForm({LoginRes,setLoginRes}) {
+export default function FirstForm({LoginComp, NEXT ,setNEXT}) {
+    const [check, setcheck] = useState({
+        lengthPass : false ,
+        upper : false ,
+        num : false
+    })
+    const [controll, setcontroll] = useState('')
     
     useEffect(() => {
         function validatePasswordLength() {
             const oitoPasswordText = document.getElementById('OitoPasswordText');
-            if (LoginRes.password.length >= 8) {
+            
+            if (LoginComp.password.length >= 8) {
+
                 setcheck(prevCheck => ({ ...prevCheck, lengthPass: true }));
                 oitoPasswordText.style.color = 'green';
             } else {
@@ -17,7 +26,7 @@ export default function FirstForm({LoginRes,setLoginRes}) {
     
         function validadePasswordUppercase() {
             const UpperCasePasswordText = document.getElementById('UpperCasePasswordText');
-            const hasUpperCase = /[A-Z]/.test(LoginRes.password);
+            const hasUpperCase = /[A-Z]/.test(LoginComp.password);
             if (hasUpperCase) {
                 setcheck(prevCheck => ({ ...prevCheck, upper: true }));
                 UpperCasePasswordText.style.color = 'green';
@@ -29,7 +38,7 @@ export default function FirstForm({LoginRes,setLoginRes}) {
     
         function validatePasswordNumChar() {
             const NumPasswordText = document.getElementById('NumPasswordText');
-            const hasNumChar = /\d/.test(LoginRes.password); // Verifica se há caracteres numéricos
+            const hasNumChar = /\d/.test(LoginComp.password);
             if (hasNumChar) {
                 setcheck(prevCheck => ({ ...prevCheck, num: true }));
                 NumPasswordText.style.color = 'green';
@@ -43,16 +52,20 @@ export default function FirstForm({LoginRes,setLoginRes}) {
         validatePasswordNumChar();
         validatePasswordLength();
         
-    }, [LoginRes.password]);
+    },[controll]);
+    
 
-
-
+    useEffect(()=>{
+        console.table(check)
+        if(check.lengthPass && check.num && check.upper){
+            setDataPassword(true)
+        }    
+    },[check])
 
     const [See, setSee] = useState(false);
     const [DataPassword , setDataPassword] = useState(false)
 
     function SeePassword() {
-        console.log(check.num)
         const buttonEye = document.getElementById('eyePassword');
         const confirm = document.getElementById('confirm');
         const password = document.getElementById('password');
@@ -71,34 +84,29 @@ export default function FirstForm({LoginRes,setLoginRes}) {
 
     function Effect(e, nome) {
         const Item = e.target.value;
-        setLoginRes({ ...LoginRes, [nome]: Item });
-        console.log(`${nome} : ${Item}`);
+        LoginComp[nome] = Item
+        
     }
-
-    
+   
 
     function Validation() {
-        console.log(DataPassword)
-        if(check.lengthPass && check.num && check.upper){
-            setDataPassword(true)
-        }
-        if (LoginRes.password === "" || LoginRes.email === "" || LoginRes.password === "" || LoginRes.confirm === "") {
+        
+        
+        if (LoginComp.password === "" || LoginComp.email === "" || LoginComp.password === "" || LoginComp.confirm === "") {
             console.log("Preencha todos os campos");
-        } else if(LoginRes.password !== LoginRes.confirm){
+        } else if(LoginComp.password !== LoginComp.confirm){
             console.log('Senhas não estão iguais')
            
         }else if(DataPassword == false){
             console.log('Senha não é válida')
         }else{
+            setNEXT(true)
             console.log('login concluido')
+            window.location.href = '/restaurant/add/address'
+            
         }
-    }
+    }   
 
-    const [check, setcheck] = useState({
-        lengthPass : false ,
-        upper : false ,
-        num : false
-    })
     
     return (
         <>
@@ -107,20 +115,21 @@ export default function FirstForm({LoginRes,setLoginRes}) {
                     <label htmlFor="name">Nome do restaurante: </label>
                     <input type="text" id="name" placeholder="Nome" className="InputRestaurant " onChange={(e) => {
                         Effect(e, 'username');
-                    }} />
+                    }} required />
                 </div>
                 <div>
                     <label htmlFor="email">Seu email:</label>
                     <input type="email" id='email' placeholder="exemplo@gmail.com" className="InputRestaurant" onChange={(e) => {
                         Effect(e, 'email');
-                    }} />
+                    }} required/>
                 </div>
                 <div className="flex align-center justify-between w-full">
                     <div className="flex flex-col ">
                         <label htmlFor="password">Sua senha:</label>
                         <input type="password" id="password" placeholder="Insira sua senha..." className="InputRestaurant" onChange={(e) => {
                             Effect(e, 'password');
-                        }} />
+                            setcontroll(e.target.value)
+                        }} required/>
                     </div>
                     <div className="flex flex-col">
                         <label htmlFor="confirm">Confirme sua senha: </label>

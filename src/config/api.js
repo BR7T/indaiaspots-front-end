@@ -43,3 +43,9 @@ export function getAllRestaurants(){
     console.log(res)
     return res
 }
+export function getRestaurant(id){
+    
+    const res = axios.get(`${apiUrl}/restaurant/getRestaurant/${id}` , {withCredentials : true});
+    console.log(res)    
+    return res
+}
