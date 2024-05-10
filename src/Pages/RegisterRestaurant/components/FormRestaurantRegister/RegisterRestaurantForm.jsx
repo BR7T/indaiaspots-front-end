@@ -25,7 +25,12 @@ export default function RegisterRestaurantFormArea({NEXT , setNEXT}){
         email:'' ,
         
     }
-
+    const Address = Data.Address = {
+            CNPJ : "",
+            Rua : "" ,
+            Bairro : "",
+            num: ""
+    }
     console.log(Data.Login)
 
     
@@ -39,7 +44,7 @@ export default function RegisterRestaurantFormArea({NEXT , setNEXT}){
             {/* 3 melhores imagens do seu restaurante */}
                 <Routes>
                     <Route path={'/'} element={<FirstForm LoginComp={Login} setData={setData} NEXT={NEXT} setNEXT={setNEXT} />}></Route>
-                    <Route path={"/address"} element={<AddressForm />} />
+                    <Route path={"/address"} element={<AddressForm Address = {Address}/>} />
                 </Routes>
             <Outlet/>
             </div>

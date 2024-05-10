@@ -1,6 +1,8 @@
 import axios from 'axios';
 const apiUrl = 'http://localhost:3100';
 
+
+
 export function get(url) {
     const response = axios.get(url);
     return response;
@@ -50,10 +52,17 @@ export function getRestaurant(id){
     return res
 }
 
-export function ConsultaCNPJ(cnpj){
-    const urlCNPJ = `https://receitaws.com.br/v1/cnpj/${cnpj}`
-    const res = axios.get(urlCNPJ ,  {withCredentials : true})
-    console.log(res)
-    return res
 
+
+export async function ConsultaCNPJ(cnpj) {
+    console.log(cnpj)
+    try {
+        const res =  axios.get(`${apiUrl}/checkCNPJ/${cnpj}` , {withCredentials : true}).then(data => {
+            console.log(data.data);
+        });
+        return res.data;
+    } catch (error) {
+        console.error('Erro na requisição:', error);
+        throw error;
+    }
 }
