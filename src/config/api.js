@@ -52,17 +52,7 @@ export function getRestaurant(id){
     return res
 }
 
-
-
 export async function ConsultaCNPJ(cnpj) {
-    console.log(cnpj)
-    try {
-        const res =  axios.get(`${apiUrl}/checkCNPJ/${cnpj}` , {withCredentials : true}).then(data => {
-            console.log(data.data);
-        });
-        return res.data;
-    } catch (error) {
-        console.error('Erro na requisição:', error);
-        throw error;
-    }
+    const res = await axios.get(`https://publica.cnpj.ws/cnpj/${cnpj}`);
+    return res.data;
 }

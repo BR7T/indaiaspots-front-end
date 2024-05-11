@@ -8,21 +8,11 @@ export default function AddressForm({Address}){
     const [infoCNPJ, setInfoCNPJ] = useState(); // Inicializa o estado com null, pois ainda não temos informações
 
     const handleConsultaCNPJ = async () => {
-        try {
-            const resultado = await ConsultaCNPJ(Address.CNPJ);
-            if (resultado.error) {
-                console.error('Erro ao consultar CNPJ:', resultado.error);
-            } else {
-                setInfoCNPJ(resultado); // Armazena as informações retornadas no estado
-                console.log(resultado); // Ou faça o que precisar com as informações aqui
-            }
-        } catch (error) {
-            console.error('Erro ao consultar CNPJ:', error);
-        }
+        const resultado = await ConsultaCNPJ(Address.CNPJ)
+        Complete(resultado)
     };
     
     function Effect(e, nome){
-        
         const Item =  e.target.value
         Address[nome] = Item
         console.log(`${nome} : ${Address[nome]}`)
@@ -30,7 +20,7 @@ export default function AddressForm({Address}){
     
     async function Complete(data){
         let rua = document.getElementById('streetInfo')
-        console.log(data)
+        rua.value = data.razao_social;
     }
     
 
