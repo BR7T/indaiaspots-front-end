@@ -3,12 +3,25 @@ import "./header.sass"
 import { IoSearch } from "react-icons/io5";
 import { useNavigate } from "react-router"
 import ButtonAdd from "../../../../standard/IndexComponents/AddRestaurant";
-
+import { checkToken } from "../../../../config/api";
+import { useState } from "react";
+import { useEffect } from "react";
 
 
 
 export default function Header(){
-    let navigate = useNavigate()
+    let navigate = useNavigate();
+
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    useEffect(() => {
+    async function checkAuth() {
+        const isAuthenticated = await checkToken();
+        setIsAuthenticated(isAuthenticated);
+    }
+
+    checkAuth();
+}, []);
+    
     return(
         <header className="shadow-sm gap-2">
 
@@ -28,6 +41,9 @@ export default function Header(){
                 </button>
             </div>
 
+            { isAuthenticated ? (
+                <img src="../../../../../public/Image/profileIcon.svg" alt="" width={'50px'}/>
+            ) : (
             <div id="SignInSignUp">
                 <button className='border-2 border-red-600 rounded-lg bg-red-600 text-white font-semibold  hover:bg-white hover:text-red-600 hover:border-red-600 transition-all duration-300'
                onClick={()=>navigate("/register")}>
@@ -42,8 +58,8 @@ export default function Header(){
                 }>
                     Login
                 </button>
-            </div>
-            <ButtonAdd/>
+                <ButtonAdd/>
+            </div>)}
         </header>
     )
 }

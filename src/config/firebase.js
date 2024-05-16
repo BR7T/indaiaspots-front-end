@@ -27,14 +27,16 @@ export async function signInWithGoogle() {
         const username = userInfo.displayName;
         const body = {token : token, email : userEmail, username : username, isNewUser : isNewUser};
         GoogleSignInRequest(body).then(res => {
-            if(res.data.Accepted) {
-                window.location.href = "/";
-            }
+            setTimeout(() => {
+                if(res.data.Accepted) {
+                    window.location.href = "/";
+                }
+            },1000);
         })
     })
 }
 
 export async function signupEmailVerification(data) {
-    const userCredentials = await createUserWithEmailAndPassword(auth,data.email,data.password);
+    const userCredentials = await createUserWithEmailAndPassword(auth,data.email,data.confirmPassword)
     sendEmailVerification(userCredentials.user);
 }

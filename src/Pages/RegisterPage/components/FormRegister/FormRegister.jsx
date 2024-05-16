@@ -4,7 +4,8 @@ import { MdPassword , MdDriveFileRenameOutline } from "react-icons/md";
 import { IoIosArrowDropright } from "react-icons/io";
 import { useState } from "react";
 import { GoogleSignInRequest , signUpRequest } from "../../../../config/api";
-import { signInWithGoogle } from "../../../../config/firebase";
+import { signInWithGoogle, signupEmailVerification } from "../../../../config/firebase";
+import { sendEmailVerification } from "firebase/auth";
 
 
 
@@ -73,8 +74,12 @@ export default function FormRegister(){
 
             <button onClick={(e)=>{
                 e.preventDefault()
-                signUpRequest(Register);
-                console.log(Register);
+                signUpRequest(Register).then(res => {
+                    if(res.data.process) {
+                        signupEmailVerification(Register)
+                    }
+                })
+                
             }}>
                 <p>Entrar</p> <IoIosArrowDropright id="ArrowIcon"/>
             </button>
