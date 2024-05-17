@@ -4,19 +4,19 @@ import { MdPassword , MdDriveFileRenameOutline } from "react-icons/md";
 import { IoIosArrowDropright } from "react-icons/io";
 import { useState } from "react";
 import { GoogleSignInRequest , signUpRequest } from "../../../../config/api";
-import { signInWithGoogle } from "../../../../config/firebase";
+import { signInWithGoogle, signupEmailVerification } from "../../../../config/firebase";
 import Swal from 'sweetalert2/src/sweetalert2.js'
 
 const Toast = Swal.mixin({
     toast: true,
     position: "top-end",
     showConfirmButton: false,
-    timer: 15000,
+    timer: 6000,
     timerProgressBar: true,
     didOpen: (toast) => {
       toast.onmouseleave = Swal.resumeTimer;
     }
-  });
+});
 
 
 export default function FormRegister(){
@@ -40,6 +40,7 @@ export default function FormRegister(){
         }else{
             signUpRequest(Register).then(res => {
                 if(res.data.process){
+                    signupEmailVerification(Register);
                     Toast.fire({
                         icon: "info",
                         title: "Verifique sua caixa de email"
@@ -53,7 +54,11 @@ export default function FormRegister(){
                       Register.name = ''
                       Register.confirmPassword = ''
                       Register.password = ''
-
+                }else if(res.data.error){
+                    Toast.fire({
+                        icon: "error",
+                        title: res.data.error
+                      });
                 }else{
                     Toast.fire({
                         icon: "error",

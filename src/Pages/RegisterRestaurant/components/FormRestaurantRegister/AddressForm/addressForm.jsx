@@ -44,8 +44,6 @@ export default function AddressForm({Address}){
             console.log('Informações inválidas')
         }else if(CNPJ.length !== 14){
             console.log('CNPJ Inválido')
-        }else{
-            
         }
     }
     

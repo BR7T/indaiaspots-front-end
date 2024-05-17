@@ -72,25 +72,22 @@ export default function WorkTime({Hour}){
                         <label htmlFor="numero">Escolha um Ícone e o tipo de restaurante:</label>
                         <div className="h-10 w-4/5 bg-gray-200 flex flex-row items-center justify-between p-1" style={{position:'relative'}} >
                             <div className="h-full w-1/2 ">
-                            
- 
- 
-                            <div className="flex w-full h-full flex-col gap-6">
-                                <select name="options" id="options" className="w-full h-full">
-                                    <option value="japonesa">Japonesa</option>
-                                    <option value="Hamburgueria">Hamburgueria</option>
-                                    <option value="Peixaria">Peixaria</option>
-                                    <option value="Pizzaria">Pizzaria</option>
-                                    <option value="Caseira">Caseira</option>
-                                    <option value="Pastelaria">Pastelaria</option>
-                                    <option value="Churrascaria">Churrascaria</option>
-                                </select>
-                            </div>
-  
- 
+                                <div className="flex w-full h-full flex-col gap-6">
+                                    <select name="options" id="options" className="w-full h-full">
+                                        <option value="japonesa">Japonesa</option>
+                                        <option value="Hamburgueria">Hamburgueria</option>
+                                        <option value="Peixaria">Peixaria</option>
+                                        <option value="Pizzaria">Pizzaria</option>
+                                        <option value="Caseira">Caseira</option>
+                                        <option value="Pastelaria">Pastelaria</option>
+                                        <option value="Churrascaria">Churrascaria</option>
+                                    </select>
+                                </div>
                             </div>
                             
-                            <div><FaChevronDown/></div>
+                            <div>
+                                
+                            </div>
                             
                         </div>
                         

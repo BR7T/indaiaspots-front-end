@@ -1,4 +1,4 @@
-import { GoogleAuthProvider, signInWithPopup,getAdditionalUserInfo, createUserWithEmailAndPassword, sendEmailVerification} from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup,getAdditionalUserInfo, createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword} from "firebase/auth";
 import {initializeApp} from "firebase/app"
 import {getAuth} from "firebase/auth"
 import { GoogleSignInRequest } from "./api";
@@ -35,6 +35,19 @@ export async function signInWithGoogle() {
 }
 
 export async function signupEmailVerification(data) {
-    const userCredentials = await createUserWithEmailAndPassword(auth,data.email,data.password);
+    const userCredentials = await createUserWithEmailAndPassword(auth,data.email,data.confirmPassword);
     sendEmailVerification(userCredentials.user);
+}
+
+export async function isEmailVerified(data) {
+    try {
+        const userCredential = await signInWithEmailAndPassword(auth, data.email, data.password);
+        const user = userCredential.user;
+        if(user.emailVerified) {
+            return true
+        } 
+        return false;
+    } catch(error) {
+        return false;
+    }
 }
