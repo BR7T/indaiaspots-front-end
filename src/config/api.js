@@ -1,6 +1,6 @@
 import axios from 'axios';
-const apiUrl = 'http://localhost:3100';
-
+// const apiUrl = 'https://us-central1-indaiaspots.cloudfunctions.net/app';
+const apiUrl = 'http://localhost:3100'
 
 
 export function get(url) {
@@ -28,9 +28,7 @@ export function signInRequest(body) {
 export function signUpRequest(body) {
     
     const res = axios.post(`${apiUrl}/user/signup`, body, {withCredentials : true});
-    if(res.catch(200)){
-        window.location.href = '/'
-        }
+    return res
 }
 
 export function SignUpRestaurant(body){

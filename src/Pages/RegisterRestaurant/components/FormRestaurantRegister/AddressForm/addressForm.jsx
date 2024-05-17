@@ -1,14 +1,15 @@
 import { useEffect , useState } from "react"
+import { BiFontSize } from "react-icons/bi";
 import { ConsultaCNPJ } from "../../../../../config/api"
 
 
 export default function AddressForm({Address}){
     
     
-    const [infoCNPJ, setInfoCNPJ] = useState(); // Inicializa o estado com null, pois ainda não temos informações
 
     const handleConsultaCNPJ = async () => {
         const resultado = await ConsultaCNPJ(Address.CNPJ)
+        console.log(resultado.estabelecimento)
         Complete(resultado)
     };
     
@@ -18,9 +19,34 @@ export default function AddressForm({Address}){
         console.log(`${nome} : ${Address[nome]}`)
     }
     
+    let ruaX = document.getElementById('streetInfo')
+    let numX = document.getElementById('numero')
+    let BairroX = document.getElementById('Bairro')
     async function Complete(data){
-        let rua = document.getElementById('streetInfo')
-        rua.value = data.razao_social;
+
+        
+        Address.Bairro = data.estabelecimento.bairro
+        Address.num = data.estabelecimento.numero
+        Address.Rua = data.estabelecimento.logradouro
+        Address.Nome = data.estabelecimento.nome_fantasia
+        let CNPJ = document.getElementById('CNPJ')
+
+        document.getElementById('name').value = data.estabelecimento.nome_fantasia
+        ruaX.value =data.estabelecimento.logradouro
+        numX.value =  data.estabelecimento.numero
+        BairroX.value = data.estabelecimento.bairro
+
+        console.log(Address)
+       
+    }
+    function Validation(){
+        if(ruaX.value === "" || numX == "" || BairroX === ""){
+            console.log('Informações inválidas')
+        }else if(CNPJ.length !== 14){
+            console.log('CNPJ Inválido')
+        }else{
+            
+        }
     }
     
 
@@ -30,7 +56,7 @@ export default function AddressForm({Address}){
                 <div >
                     <label htmlFor="name">Nome do restaurante:</label>
                     <input type="text" id="name" placeholder=''className="InputRestaurant " onChange={(e)=>{
-                        Effect(e,'username')
+                        Effect(e,'Nome')
                     }}/>
                 </div>
                 <div className="flex flex-row">
@@ -46,8 +72,8 @@ export default function AddressForm({Address}){
                             }
                         }}
                         onPaste={e=>{
-                            e.preventDefault()
-                            window.alert('não é possível colar CNPJ nesse campo')
+                            // e.preventDefault()
+                            // window.alert('não é possível colar CNPJ nesse campo')
                         }}/>    
                     </div>
                     <div>
@@ -66,28 +92,31 @@ export default function AddressForm({Address}){
                 <div>
                     <div>
                         <label htmlFor="numero">Número do restaurante:</label>
-                        <input type="number" className="InputRestaurant" id="numero" onKeyDown={(e)=>{
-                            if(e.key === 'e'){
-                                e.preventDefault()
-                            }
-                        }}
-                        onChange={(e)=>{
-                            Effect(e,'num')
-                        }} disabled/>
+                        <input type="number" className="InputRestaurant" id="numero" disabled/>
                     </div>
                 </div>
             </form>
-           
-
-
-                <button type="button" className="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-large rounded-lg text-sm px-10 py-4 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-600 dark:focus:ring-red-800  self-end" onClick={() => { 
-                        handleConsultaCNPJ()
+            <div className="flex justify-between">
+                <button className="text-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-large rounded-lg text-sm px-10 py-4 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-600 dark:focus:ring-red-800  self-start border-2 border-red-600" style={{fontFamily: "Lufga Bold" , fontSize:"1.1rem"}} onClick={() => { 
+                        if(Address.CNPJ.length !== 14){
+                            window.alert('o CNPJ não é válido')
+                        }else{
+                            handleConsultaCNPJ()
+                        }
                     }}>
+                    Verificar CNPJ
+                </button>
+
+
+                <button type="button" className="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-large rounded-lg text-sm px-10 py-4 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-600 dark:focus:ring-red-800  self-end" onClick={()=>{
+                    Validation()
+                }}>
                     Avançar
                 <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                 </svg>
                 </button>
+            </div>
 
                 
                 
