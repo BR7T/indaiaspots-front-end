@@ -4,10 +4,19 @@ import { MdPassword } from "react-icons/md";
 import { IoIosArrowDropright } from "react-icons/io";
 import { useState } from "react";
 import { GoogleSignInRequest , signInRequest} from "../../../../config/api";
-import { signInWithGoogle } from "../../../../config/firebase";
+import { isEmailVerified, signInWithGoogle } from "../../../../config/firebase";
 
 
-
+const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 6000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseleave = Swal.resumeTimer;
+    }
+});
 
 
 export default function FormLogin(){
@@ -15,8 +24,6 @@ export default function FormLogin(){
         email : "",
         password : ""
     })
-
-
 
     return(
     <div id="formArea">
@@ -52,8 +59,21 @@ export default function FormLogin(){
 
             <button onClick={(e)=>{
                 e.preventDefault()
-                signInRequest(Login)
-                
+                isEmailVerified(Login).then(verified => {
+                    if(verified){
+                        signInRequest(Login).then(res => {
+                            if(res.data.Accepted) {
+                                window.location.href = '/';
+                            }
+                        })
+                    } 
+                    else {
+                        Toast.fire({
+                            icon:'error',
+                            title: "Email ou senha inválidos"
+                        })
+                    }
+                })
             }}>
                 <p>Entrar</p> <IoIosArrowDropright id="ArrowIcon"/>
             </button>

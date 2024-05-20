@@ -1,14 +1,17 @@
-import Images from "../../../../../public/Image/images"
-import "./header.sass"
+import Images from "../../../../../public/Image/images";
+import "./header.sass";
 import { IoSearch } from "react-icons/io5";
 import { useNavigate } from "react-router"
 import ButtonAdd from "../../../../standard/IndexComponents/AddRestaurant";
-
-
+import { useState } from "react";
+import { useEffect } from "react";
+import { checkToken, logout } from "../../../../config/api";
 
 
 export default function Header(){
-    let navigate = useNavigate()
+    
+    const navigate = useNavigate()
+    
     return(
         <header className="shadow-sm gap-2">
 
@@ -27,23 +30,27 @@ export default function Header(){
                     <IoSearch/>
                 </button>
             </div>
-
+            
             <div id="SignInSignUp">
                 <button className='border-2 border-red-600 rounded-lg bg-red-600 text-white font-semibold  hover:bg-white hover:text-red-600 hover:border-red-600 transition-all duration-300'
-               onClick={()=>navigate("/register")}>
+               onClick={()=>
+                    checkToken()
+                    //navigate("/register")
+               }>
                 
                     Cadastre-se
                 </button>
 
                 <button className=' border-white bg-white rounded-lg hover:border-red-600 border-2 hover:text-black   transition ease-in-out duration-300 font-semibold'
                  onClick={()=>{
-                        navigate("/login")
+                        logout();
+                        //navigate("/login")
                     }
                 }>
                     Login
                 </button>
+                <ButtonAdd/>
             </div>
-            <ButtonAdd/>
         </header>
     )
 }

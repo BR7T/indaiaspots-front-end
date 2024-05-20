@@ -4,10 +4,19 @@ import { MdPassword , MdDriveFileRenameOutline } from "react-icons/md";
 import { IoIosArrowDropright } from "react-icons/io";
 import { useState } from "react";
 import { GoogleSignInRequest , signUpRequest } from "../../../../config/api";
-import { signInWithGoogle } from "../../../../config/firebase";
+import { signInWithGoogle, signupEmailVerification } from "../../../../config/firebase";
+import Swal from 'sweetalert2/src/sweetalert2.js';
 
-
-
+const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 6000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseleave = Swal.resumeTimer;
+    }
+});
 
 
 export default function FormRegister(){
@@ -17,8 +26,57 @@ export default function FormRegister(){
         name: "",
         confirmPassword : ""
     })
+    function Validation(){
+        if(Register.email === ''|| Register.password === '' || Register.name === ''){
+            Toast.fire({
+                icon:'error',
+                title: "Preencha todos os campos"
+            })
+        }else if(Register.password !== Register.confirmPassword){
+            Toast.fire({
+                icon:'error',
+                title: "As senhas devem ser iguais"
+            })
+        }else{
+            signUpRequest(Register).then(res => {
+                if(res.data.process){
+                    signupEmailVerification(Register);
+                    Toast.fire({
+                        icon: "info",
+                        title: "Verifique sua caixa de email"
+                      });
+                      document.getElementById('email').value = ''
+                      document.getElementById('name').value = ''
+                      document.getElementById('password').value = ''
+                      document.getElementById('passwordRepeat').value = ''
 
+                      Register.email = ''
+                      Register.name = ''
+                      Register.confirmPassword = ''
+                      Register.password = ''
+                }else if(res.data.error){
+                    Toast.fire({
+                        icon: "error",
+                        title: res.data.error
+                      });
+                }else{
+                    Toast.fire({
+                        icon: "error",
+                        title: "505 - Erro no servidor"
+                      });
+                }
+                
+            })
+            
+            
+        }
+    }
 
+    function Effect(e, nome){
+        const Item =  e.target.value
+        Register[nome] = Item
+        console.log(`${nome} : ${Register[nome]}`)
+    }
 
     return(
     <div id="formArea">
@@ -32,8 +90,7 @@ export default function FormRegister(){
             <input type="email" id="email" placeholder="Insira seu Email" autoComplete={"off"}
              onChange={
                 (e)=>{
-                   const Email =  e.target.value
-                   setRegister({...Register , email : Email})
+                    Effect(e,'email')
                 }
             }/>
             <label htmlFor="name" className="text-base">
@@ -43,9 +100,7 @@ export default function FormRegister(){
             <input type="text" id="name" placeholder="Insira seu nome"
              onChange={
                 (e)=>{
-                   const Name =  e.target.value
-                   
-                   setRegister({...Register , name : Name})
+                    Effect(e,'name')
                 }
             }
                 />
@@ -55,9 +110,7 @@ export default function FormRegister(){
                     <input type="password" id="password" placeholder="Insira sua senha"
                     onChange={
                         (e)=>{
-                        const confirm =  e.target.value
-                        
-                        setRegister({...Register , confirmPassword : confirm})
+                            Effect(e,'password')
                         }
                     }
                         />
@@ -65,7 +118,9 @@ export default function FormRegister(){
 
                 <div>
                     <label htmlFor="passwordRepeat">Confirme</label>
-                    <input type="password" name="password" id="passwordRepeat"  placeholder="Confirme sua senha"/>
+                    <input type="password" name="password" id="passwordRepeat"  placeholder="Confirme sua senha" onChange={(e)=>{
+                        Effect(e,'confirmPassword')
+                    }}/>
                 </div>
 
             </section>
@@ -73,8 +128,9 @@ export default function FormRegister(){
 
             <button onClick={(e)=>{
                 e.preventDefault()
-                signUpRequest(Register);
                 console.log(Register);
+                Validation()
+                
             }}>
                 <p>Entrar</p> <IoIosArrowDropright id="ArrowIcon"/>
             </button>
