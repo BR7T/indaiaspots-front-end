@@ -14,7 +14,6 @@ export default function CardArea(){
           )
     }, [])
     
-    console.table(Restaurantes)
     return(
         <div className="CardArea">
             {Restaurantes && Restaurantes.map((Res , index)=>{

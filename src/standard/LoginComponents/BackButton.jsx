@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { Navigate , useNavigate } from "react-router-dom";
-useEffect
+
 
 
 
@@ -19,7 +19,7 @@ export default function BackButton(props){
     const Navigate = useNavigate()
         return(
         <IoMdArrowRoundBack id="BackPageBtn" className="w-12 absolute top-8 h-12   p-2 rounded-full border-black border-2" onClick={()=>{
-            Navigate(-1)
+            window.location.assign(props.pagelink);
         }}/>
     )
 }

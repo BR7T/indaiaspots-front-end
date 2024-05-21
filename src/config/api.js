@@ -1,18 +1,9 @@
 import axios from 'axios';
-const apiUrl = 'https://southamerica-east1-indaiaspots.cloudfunctions.net/app';
-//const apiUrl = 'http://127.0.0.1:5001/indaiaspots/southamerica-east1/app';
-import { appCheckToken } from './firebase';
 import { getAppCheckToken } from './firebase';
 
-export function get(url) {
-    const response = axios.get(url);
-    return response;
-}
+const apiUrl = 'https://southamerica-east1-indaiaspots.cloudfunctions.net/app';
+//const apiUrl = 'http://127.0.0.1:5001/indaiaspots/southamerica-east1/app';
 
-export async function post(url,body) {
-    const response = await axios.post(url, body);
-    return response;
-}
 
 export async function GoogleSignInRequest(body) {
     const token = await getAppCheckToken();
@@ -40,10 +31,7 @@ export async function SignUpRestaurant(body){
 
 export async function getAllRestaurants(){
     const token = await getAppCheckToken();
-    const res = axios.get(`${apiUrl}/restaurant/getRestaurants` , {withCredentials : true, headers: {
-    'Content-Type': 'application/json',
-    'X-Firebase-AppCheck': token
-    }});
+    const res = axios.get(`${apiUrl}/restaurant/getRestaurants` , {withCredentials : true, headers: {'Content-Type': 'application/json','X-Firebase-AppCheck': token}});
     return res;
 }
 
