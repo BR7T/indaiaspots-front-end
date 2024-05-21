@@ -11,6 +11,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@firebase/app-check": "^0.8.4",
+    "amqplib": "^0.5.2",
     "amqplib": "^0.5.2",
     "axios": "^1.6.8",
     "firebase": "^10.9.0",

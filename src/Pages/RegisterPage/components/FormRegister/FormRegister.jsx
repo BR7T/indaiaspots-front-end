@@ -77,6 +77,57 @@ export default function FormRegister(){
         Register[nome] = Item
         console.log(`${nome} : ${Register[nome]}`)
     }
+    function Validation(){
+        if(Register.email === ''|| Register.password === '' || Register.name === ''){
+            Toast.fire({
+                icon:'error',
+                title: "Preencha todos os campos"
+            })
+        }else if(Register.password !== Register.confirmPassword){
+            Toast.fire({
+                icon:'error',
+                title: "As senhas devem ser iguais"
+            })
+        }else{
+            signUpRequest(Register).then(res => {
+                if(res.data.process){
+                    signupEmailVerification(Register);
+                    Toast.fire({
+                        icon: "info",
+                        title: "Verifique sua caixa de email"
+                      });
+                      document.getElementById('email').value = ''
+                      document.getElementById('name').value = ''
+                      document.getElementById('password').value = ''
+                      document.getElementById('passwordRepeat').value = ''
+
+                      Register.email = ''
+                      Register.name = ''
+                      Register.confirmPassword = ''
+                      Register.password = ''
+                }else if(res.data.error){
+                    Toast.fire({
+                        icon: "error",
+                        title: res.data.error
+                      });
+                }else{
+                    Toast.fire({
+                        icon: "error",
+                        title: "505 - Erro no servidor"
+                      });
+                }
+                
+            })
+            
+            
+        }
+    }
+
+    function Effect(e, nome){
+        const Item =  e.target.value
+        Register[nome] = Item
+        console.log(`${nome} : ${Register[nome]}`)
+    }
 
     return(
     <div id="formArea">
@@ -90,6 +141,7 @@ export default function FormRegister(){
             <input type="email" id="email" placeholder="Insira seu Email" autoComplete={"off"}
              onChange={
                 (e)=>{
+                    Effect(e,'email')
                     Effect(e,'email')
                 }
             }/>
@@ -118,6 +170,9 @@ export default function FormRegister(){
 
                 <div>
                     <label htmlFor="passwordRepeat">Confirme</label>
+                    <input type="password" name="password" id="passwordRepeat"  placeholder="Confirme sua senha" onChange={(e)=>{
+                        Effect(e,'confirmPassword')
+                    }}/>
                     <input type="password" name="password" id="passwordRepeat"  placeholder="Confirme sua senha" onChange={(e)=>{
                         Effect(e,'confirmPassword')
                     }}/>

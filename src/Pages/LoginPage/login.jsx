@@ -30,7 +30,7 @@ export default function Login(){
                         <div id="title">  
                             <h1 className="text-5xl text-start">Login</h1>
                         </div>
-                        <BackButton position='right'/>
+                        <BackButton position='right' pagelink='/'/>
                         
                         <FormLogin/>
                         <p>Ou</p>
