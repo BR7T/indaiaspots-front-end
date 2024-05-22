@@ -41,12 +41,10 @@ export default function Header() {
         }}
       >
         <div id="LogoHeader">
-          <img src={Images.Logo} alt="Logo" className="h-10" />
+          <img src={Images.Logo} alt="Logo"/>
         </div>
         <p
-          className={`font-bold ${
-            menuOpen ? "hidden sm:block" : "hidden sm:block"
-          }`}
+          className={`font-bold hidden md:block`}
         >
           INDSPTS
         </p>
