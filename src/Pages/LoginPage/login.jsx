@@ -21,11 +21,11 @@ export default function Login(){
 
     return(
         <>
-            <div id="LoginPage">
+            <div id="LoginPage" >
 
-                <main id="mainLogin" className="w-2/6 h-2/3 rounded-xl  ">
+                <main id="mainLogin" className="w-2/6 h-2/3 rounded-xl ">
                     
-                    <div id="LoginArea" className=" justify-center h-full" >
+                    <div id="LoginArea" className=" justify-center h-full w-full z-9" >
                         
                         <div id="title">  
                             <h1 className="text-5xl text-start">Login</h1>
@@ -45,7 +45,7 @@ export default function Login(){
 
                 </main>
                
-                <aside id="TextAsideArea">
+                <aside id="TextAsideArea" className="hidden">
                     <TextAside/>
                 </aside>
             </div>

@@ -28,7 +28,7 @@ export default function Header(){
                 <div id="LogoHeader">
                     <img src={Images.Logo} alt="" />
                 </div>
-                <p className="">INDSPTS</p>
+                <p className="hidden md:block">INDSPTS</p>
             </div>
             
 
@@ -41,20 +41,39 @@ export default function Header(){
             
             {   
                 isLoggedIn === null ? ( <div></div> ) :
-                isLoggedIn ? ( 
-                    <div className="flex items-center">
-                        <div 
-                            className="mr-4 cursor-pointer" 
-                            onClick={() => {
-                                logout().then(response => {
-                                    window.location.href = '/login';
-                                })
-                            }}
-                        >
-                            Sair
-                        </div>
-                        <CgProfile className="h-10 w-10 mr-4"/>
-                    </div>
+                isLoggedIn ? (
+                    <>
+                        
+<button id="dropdownInformationButton" data-dropdown-toggle="dropdownInformation" class="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" type="button">
+<svg className="w-2.5 h-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+</svg>
+<p className="mx-4">João</p> 
+<CgProfile className="w-5 h-5"/>
+</button>
+
+<div id="dropdownInformation" className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+    <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
+      <div>Bonnie Green</div>
+      <div className="font-medium truncate">name@flowbite.com</div>
+    </div>
+    <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownInformationButton">
+      <li>
+        <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+      </li>
+      <li>
+        <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+      </li>
+      <li>
+        <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+      </li>
+    </ul>
+    <div className="py-2">
+      <button className="w-full text-red-600 block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" onClick={()=>{logout().then(res=>window.location.href = '/')}}>Sign out</button>
+    </div>
+</div>
+
+</>
                 ) :
                 (
                     <div id="SignInSignUp">

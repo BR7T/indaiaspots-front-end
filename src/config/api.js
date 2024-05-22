@@ -15,12 +15,6 @@ export async function post(url,body) {
     const response = await axios.post(url, body);
     return response;
 }
-
-export function GoogleSignInRequest(body) {
-    const res = axios.post(`${apiUrl}/user/googleSignIn`, body, {withCredentials : true});
-    return res;
-}
-
 export function signInRequest(body) {
     console.log("ok")
     const res = axios.post(`${apiUrl}/user/signin`, body ,{withCredentials : true});
@@ -44,24 +38,15 @@ export async function getAllRestaurants(){
 export async function getRestaurant(id){
     const token = await getAppCheckToken();
     const res = axios.get(`${apiUrl}/restaurant/getRestaurant/${id}` , {withCredentials : true, headers: {'Content-Type': 'application/json','X-Firebase-AppCheck': token}});
-
-export async function getRestaurant(id){
-    const token = await getAppCheckToken();
-    const res = axios.get(`${apiUrl}/restaurant/getRestaurant/${id}` , {withCredentials : true, headers: {'Content-Type': 'application/json','X-Firebase-AppCheck': token}});
-    console.log(res)    
-    return res
 }
+
+
 
 export async function ConsultaCNPJ(cnpj) {
     const res = await axios.get(`https://publica.cnpj.ws/cnpj/${cnpj}`);
     return res.data;
 }
 
-export async function checkToken() {
-    const token = await getAppCheckToken();
-    const res = await axios.get(`${apiUrl}/checkToken` , {withCredentials : true, headers: {'Content-Type': 'application/json','X-Firebase-AppCheck': token}});   
-    return res.data.isValid;
-}
 
 export async function logout() {
     const token = await getAppCheckToken();
@@ -74,21 +59,7 @@ export async function checkToken() {
     const res = await axios.get(`${apiUrl}/checkToken` , {withCredentials : true, headers: {'Content-Type': 'application/json','X-Firebase-AppCheck': token}});   
     return res.data.isValid;
 }
-
-export async function logout() {
-    const token = await getAppCheckToken();
-    const res = await axios.get(`${apiUrl}/logout` , {withCredentials : true, headers: {'Content-Type': 'application/json','X-Firebase-AppCheck': token}});   
-    return res.data;
-}
-
-export async function checkToken() {
-    const token = await getAppCheckToken();
-    const res = await axios.get(`${apiUrl}/checkToken` , {withCredentials : true, headers: {'Content-Type': 'application/json','X-Firebase-AppCheck': token}});   
-    return res.data.isValid;
-}
-
-export async function logout() {
-    const token = await getAppCheckToken();
-    const res = await axios.get(`${apiUrl}/logout` , {withCredentials : true, headers: {'Content-Type': 'application/json','X-Firebase-AppCheck': token}});   
-    return res.data;
+export async function signUpRequest(body) {
+    const res = axios.post(`${apiUrl}/user/signup`, body, {withCredentials : true, headers: {'Content-Type': 'application/json','X-Firebase-AppCheck': token}});
+    return res;
 }
