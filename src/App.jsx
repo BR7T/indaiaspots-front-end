@@ -21,6 +21,7 @@ function App(){
         <Route path="/register" element={<Register />}></Route>
         <Route path="/restaurant/add/*" element={<RegisterRestaurant/>}></Route>
         <Route path="/teste/:id" element={<RestaurantCard />}></Route>
+        <Route path="/*" element={<h1>Página não encontrada</h1>}/>
         
       </Routes>
     </BrowserRouter>
