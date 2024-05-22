@@ -31,7 +31,7 @@ export default function Register(){
                 <main id="mainRegister" className="w-2/5 h-2/3 rounded-xl  ">
                     
                     <div id="RegisterArea" className=" justify-center h-full" >
-                        <BackButton/>
+                        <BackButton pagelink='/'/>
                         
                         <div id="title">  
                             <h1 className="text-5xl text-start">Cadastre-se</h1>
@@ -46,7 +46,6 @@ export default function Register(){
                             ><IoLogoGoogle/> Continuar com o Google</button>
                         </div>
                     </div>
-                    
 
                 </main>
                

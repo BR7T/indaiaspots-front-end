@@ -1,6 +1,10 @@
 import { FaChevronDown } from "react-icons/fa";
+import { GiBarbecue , GiFullPizza , GiChopsticks , GiCookingPot   } from "react-icons/gi";
+import { IoFastFood , IoFish , IoBeerOutline } from "react-icons/io5";
+import "./worktime.sass"
+import { useState } from "react";
 
-  
+
 
 export default function WorkTime({Hour}){
 
@@ -70,23 +74,31 @@ export default function WorkTime({Hour}){
                 <div>
                     <div className="flex flex-col">
                         <label htmlFor="numero">Escolha um Ícone e o tipo de restaurante:</label>
-                        <div className="h-10 w-4/5 bg-gray-200 flex flex-row items-center justify-between p-1" style={{position:'relative'}} >
-                            <div className="h-full w-1/2 ">
-                                <div className="flex w-full h-full flex-col gap-6">
-                                    <select name="options" id="options" className="w-full h-full">
+                        <div className="w-3/5 h-28 bg-gray-200 flex flex-row items-center justify-between p-1 rounded-xl gap-8" style={{position:'relative'}} >
+                            <div className="h-full w-1/3">
+                                <div className="flex w-full h-full flex-col ">
+                                    <select name="options" id="options" className="w-full h-full bg-transparent ">
                                         <option value="japonesa">Japonesa</option>
                                         <option value="Hamburgueria">Hamburgueria</option>
                                         <option value="Peixaria">Peixaria</option>
                                         <option value="Pizzaria">Pizzaria</option>
                                         <option value="Caseira">Caseira</option>
-                                        <option value="Pastelaria">Pastelaria</option>
                                         <option value="Churrascaria">Churrascaria</option>
+                                        <option value="Bar">Bar</option>
+                                        <option value="Outros">Outros:</option>
                                     </select>
                                 </div>
+                                
                             </div>
                             
-                            <div>
-                                
+                            <div className="grid grid-cols-4 text-4xl gap-3">
+                                <nav><GiBarbecue/></nav>
+                                <nav><IoFastFood/></nav>
+                                <nav><IoFish/></nav>
+                                <nav><GiFullPizza/></nav>
+                                <nav><GiChopsticks/></nav>
+                                <nav><GiCookingPot /></nav>
+                                <nav><IoBeerOutline /></nav>
                             </div>
                             
                         </div>
