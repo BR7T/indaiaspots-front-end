@@ -34,7 +34,12 @@ export default function Header() {
 
   return (
     <header className="shadow-sm p-4 lg:p-0">
-      <div id="LogoArea">
+      <div
+        id="LogoArea"
+        onClick={() => {
+          navigate("/");
+        }}
+      >
         <div id="LogoHeader">
           <img src={Images.Logo} alt="Logo" className="h-10" />
         </div>
