@@ -59,7 +59,7 @@ export default function RegisterRestaurantFormArea({NEXT , setNEXT}){
                     <Route path={'/'} element={<FirstForm LoginComp={Login} setData={setData} NEXT={NEXT} setNEXT={setNEXT} />}></Route>
                     <Route path={"/address"} element={<AddressForm Address = {Address}/>} />
                     <Route path={"/horaedia"} element={<AddressForm/>} />
-                    <Route path={"/a"} element={<WorkTime Hour = {Hour}/>} />
+                    <Route path={"/a"} element={<WorkTime Hour = {Hour}  All = {Data}/>} />
                 </Routes>
             <Outlet/>
             </div>
