@@ -106,6 +106,7 @@ export default function WorkTime({Hour}){
                         
                     </div>
                 </div>
+                <input type="file"/>
             </form>
             <div className="flex justify-between">
                 

@@ -119,11 +119,11 @@ export default function TextAside(){
 
                 </div>
             </div>
-            <nav id="dotSelectedArea">
+            <article id="dotSelectedArea">
                 <div className="dotSelected"></div>
                 <div className="dotSelected"></div>
                 <div className="dotSelected"></div>
-            </nav>
+            </article>
         </article>
     )
     

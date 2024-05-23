@@ -5,7 +5,7 @@ import Login from "./Pages/LoginPage/login";
 import HomePage from "./Pages/HomePage/home.jsx"
 import Register from  "./Pages/RegisterPage/Register"
 import RegisterRestaurant from "./Pages/RegisterRestaurant/RegisterRestaurant";
-import RestaurantCard from "./Pages/IndividualCard/RestaurantCard";
+import Restaurantcard from "./Pages/IndividualCard/RestaurantCard";
 import NotFound from "./Pages/404/error404.jsx";
 
 function App(){
@@ -17,7 +17,8 @@ function App(){
         <Route path="/" element={<HomePage />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/restaurant/add/*" element={<RegisterRestaurant/>}></Route>
-        <Route path="/teste/:id" element={<RestaurantCard />}></Route>
+        <Route path="/teste/:id" element={< Restaurantcard/>}></Route>
+        <Route path=""></Route>
         <Route path="/*" element={<NotFound/>}/>
       </Routes>
     </BrowserRouter>

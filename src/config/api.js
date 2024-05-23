@@ -39,6 +39,7 @@ export async function getAllRestaurants(){
 export async function getRestaurant(id){
     const token = await getAppCheckToken();
     const res = axios.get(`${apiUrl}/restaurant/getRestaurant/${id}` , {withCredentials : true, headers: {'Content-Type': 'application/json','X-Firebase-AppCheck': token}});
+    return res
 }
 
 export async function ConsultaCNPJ(cnpj) {

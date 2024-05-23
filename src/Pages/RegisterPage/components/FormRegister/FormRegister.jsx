@@ -130,7 +130,7 @@ export default function FormRegister(){
     }
 
     return(
-    <div id="formArea">
+    <div id="formArea" className="relative">
         <form id="formRegister"action="post">
 
             <label htmlFor="email" className="text-base">
@@ -173,9 +173,6 @@ export default function FormRegister(){
                     <input type="password" name="password" id="passwordRepeat"  placeholder="Confirme sua senha" onChange={(e)=>{
                         Effect(e,'confirmPassword')
                     }}/>
-                    <input type="password" name="password" id="passwordRepeat"  placeholder="Confirme sua senha" onChange={(e)=>{
-                        Effect(e,'confirmPassword')
-                    }}/>
                 </div>
 
             </section>
@@ -191,6 +188,7 @@ export default function FormRegister(){
             </button>
             
         </form>
+        
     </div>  
     )
 }
