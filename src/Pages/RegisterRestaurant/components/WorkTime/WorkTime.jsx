@@ -4,7 +4,7 @@ import { GiBarbecue , GiFullPizza , GiChopsticks , GiCookingPot   } from "react-
 import { IoFastFood , IoFish , IoBeerOutline } from "react-icons/io5";
 import "./worktime.sass"
 import { useState } from "react";
-import { addAddress, addImage, getPreSignedUrl, preSignedUrlImageUpload, SignUpRestaurant } from "../../../../config/api";
+import { addAddress, addImage, getPreSignedUrl, preSignedUrlImageUpload, SignUpRestaurant, deleteUser } from "../../../../config/api";
 
 const Toast = Swal.mixin({
     toast: true,
@@ -141,7 +141,11 @@ export default function WorkTime({Hour , All}){
                         All.Address.ID_Restaurante = restaurantId;
                         if(loginResponse.data.process) {
                             addAddress(All.Address).then(res => {
-                                if(res.data.error) { displayError(res.data.error, '/restaurant/add/address') }
+                                if(res.data.error) { 
+                                    deleteUser(All.Login.email).then(() => {
+                                        displayError(res.data.error, '/restaurant/add/address')
+                                    })
+                                }
                                 getPreSignedUrl(selectedImage.name).then(preSignedUrlResponse => {
                                     preSignedUrlImageUpload(preSignedUrlResponse.data.signedUrl, selectedImage).then(() => {
                                         const body = {filename : selectedImage.name, ID_Restaurante : restaurantId};

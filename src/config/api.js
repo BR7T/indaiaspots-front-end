@@ -23,6 +23,12 @@ export async function signUpRequest(body) {
     return res;
 }
 
+export async function deleteUser(email) {
+    const token = await getAppCheckToken();
+    const res = axios.post(`${apiUrl}/user/delete?email=${email}`, {withCredentials : true, headers: {'Content-Type': 'application/json','X-Firebase-AppCheck': token}});
+    return res;
+}
+
 export async function SignUpRestaurant(body){
     const token = await getAppCheckToken();
     const res = axios.post(`${apiUrl}/user/signupRestaurant`, body, {withCredentials : true, headers: {'Content-Type': 'application/json','X-Firebase-AppCheck': token}});
