@@ -3,17 +3,16 @@ import { useParams } from "react-router-dom";
 import { getRestaurant } from "../../config/api";
 
 
-export default function RestaurantCard(){
+export default function Restaurantcard(){
       //se ID_Restaunte for igual ao id do objeto, mostrar tela propria
     //ID ele vai pegar da api
     const [card, setcard] = useState() 
     const  {id}  = useParams();
 
     useEffect(() => {
-        getRestaurant(id)
-            .then((r) => {
-                setcard(r.data[0]);
-                console.log(r.data[0])
+        getRestaurant(id).then(aaa => {
+                console.log(aaa)
+                setcard(aaa.data[0]);
             })
            
 
@@ -29,7 +28,7 @@ export default function RestaurantCard(){
             
             <figure className="flex flex-row h-full w-full px-24 bg-gray-300 items-center justify-center gap-5 shadow-sm shadow-black">
                 <article className="w-1/2 flex items-center justify-center">
-                    <img src="https://d1rz3fbu8zmjz5.cloudfront.net/unnamed.jpg" alt="" />
+                    <img src="https://d1rz3fbu8zmjz5.cloudfront.net/Pezao_image.jpg" alt="" />
                 </article>
                 <div className="bg-white h-5/6 w-1/2 rounded-xl p-8 flex flex-col">
                     <div id="nameArea">
@@ -45,9 +44,6 @@ export default function RestaurantCard(){
             </figure>
         )
 
-    }else{
-        return(
-            <p>okok</p>
-        )
+    
     }
 }

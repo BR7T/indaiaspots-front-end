@@ -22,6 +22,9 @@ export default function ResgisterRestaurant(){
             case 1:
                 navigate('/restaurant/add/address')
                 break
+            case 2:
+                navigate('/restaurant/add/horaedia')
+                break
             default:
                 break;
         }

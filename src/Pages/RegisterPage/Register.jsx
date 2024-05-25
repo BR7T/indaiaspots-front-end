@@ -24,11 +24,11 @@ export default function Register(){
     return(
         <>
                 
-            <div id="RegisterPage">
+            <div id="RegisterPage" className="">
             <aside id="TextAsideArea">
                     <TextAside/>
                 </aside>
-                <main id="mainRegister" className="w-2/5 h-2/3 rounded-xl  ">
+                <main id="mainRegister" className="w-2/5 h-5/6 rounded-xl  ">
                     
                     <div id="RegisterArea" className=" justify-center h-full" >
                         <BackButton pagelink='/'/>
@@ -44,6 +44,9 @@ export default function Register(){
                         }}>
                             <button
                             ><IoLogoGoogle/> Continuar com o Google</button>
+                        </div>
+                        <div className=" -right-1/2 absolute bg-red-600 w-1/2 h-1/4 rounded-3xl bg-white shadow bottom-0">
+
                         </div>
                     </div>
 

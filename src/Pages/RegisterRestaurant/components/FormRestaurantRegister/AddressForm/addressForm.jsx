@@ -3,14 +3,14 @@ import { BiFontSize } from "react-icons/bi";
 import { ConsultaCNPJ } from "../../../../../config/api"
 
 
-export default function AddressForm({Address}){
+export default function AddressForm({Address , setNEXT , All}){
     
-    
+    console.log(All)
 
     const handleConsultaCNPJ = async () => {
         const resultado = await ConsultaCNPJ(Address.CNPJ)
         console.log(resultado.estabelecimento)
-        Complete(resultado)
+        await Complete(resultado)
     };
     
     function Effect(e, nome){
@@ -18,21 +18,27 @@ export default function AddressForm({Address}){
         Address[nome] = Item
         console.log(`${nome} : ${Address[nome]}`)
     }
-    
-    let ruaX = document.getElementById('streetInfo')
-    let numX = document.getElementById('numero')
-    let BairroX = document.getElementById('Bairro')
+    let ruaX;
+    let BairroX
+    let numX
+    useEffect(()=>{
+         ruaX = document.getElementById('streetInfo')
+         numX = document.getElementById('numero')
+         BairroX = document.getElementById('Bairro')
+    },[])
+
     async function Complete(data){
 
         
         Address.Bairro = data.estabelecimento.bairro
-        Address.num = data.estabelecimento.numero
+        Address.Numero = data.estabelecimento.numero
         Address.Rua = data.estabelecimento.logradouro
-        Address.Nome = data.estabelecimento.nome_fantasia
+        Address.RazaoSocial = data.razao_social
         let CNPJ = document.getElementById('CNPJ')
 
-        document.getElementById('name').value = data.estabelecimento.nome_fantasia
-        ruaX.value =data.estabelecimento.logradouro
+        document.getElementById('name').value = data.razao_social
+        console.log('a')
+        ruaX.value = data.estabelecimento.logradouro
         numX.value =  data.estabelecimento.numero
         BairroX.value = data.estabelecimento.bairro
 
@@ -42,8 +48,13 @@ export default function AddressForm({Address}){
     function Validation(){
         if(ruaX.value === "" || numX == "" || BairroX === ""){
             console.log('Informações inválidas')
-        }else if(CNPJ.length !== 14){
+        }else if(Address.CNPJ.length !== 14){
+            console.log(Address.CNPJ.length)
             console.log('CNPJ Inválido')
+        }else{
+            console.log(All)
+            setNEXT(2)
+            console.log('cadastro concluido')
         }
     }
     

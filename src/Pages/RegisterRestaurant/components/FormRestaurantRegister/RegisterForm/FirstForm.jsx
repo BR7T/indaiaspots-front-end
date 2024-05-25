@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import { PiEyeBold, PiEyeClosedBold } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";
 
-export default function FirstForm({LoginComp, NEXT ,setNEXT}) {
+export default function FirstForm({LoginComp, NEXT ,setNEXT , All}) {
     const [check, setcheck] = useState({
         lengthPass : false ,
         upper : false ,
         num : false
     })
+
+    console.log(All)
     const [controll, setcontroll] = useState('')
     
     useEffect(() => {

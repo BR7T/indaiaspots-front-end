@@ -6,7 +6,7 @@ header
     color: #272727
     display: flex
     align-items: center
-    justify-content: space-around
+    justify-content: space-between
     position: fixed
     left: 50%
     transform: translateX(-50%)
@@ -18,41 +18,30 @@ header
        
 
     #LogoArea
+        flex: 1
         height: 100%
         display: flex
         flex-direction: row
         align-items: center
-        cursor: pointer
         p
             font-family: "Lexend Deca", sans-serif
             font-weight: 600
     #LogoHeader 
         img
-            min-height: 50px
-            max-height: 50px
+            height: 50px
            
 
-#BuscaArea
-    display: flex
-    align-items: center
-    input
-      border: 1px solid #ccc
-      border-right: none
-      padding: 0.5rem
-      border-radius: 0.375rem 0 0 0.375rem
-    button
-      background-color: #e3342f
-      padding: 0.5rem
-      border-radius: 0 0.375rem 0.375rem 0
-      color: white
-      display: flex
-      align-items: center
-      
+    #BuscaArea 
+        flex: 5
+        width: 100%
+        height: 100%
+        display: flex
+        align-items: center
 
     input[type="text"] 
-        width: 40%
+        width: 70%
         height: 100%
-        padding: 10px 10px 10px 10px
+        padding: 10px
         border: 1px solid #ccc
         border-radius: 20px
         font-size: 16px
@@ -62,10 +51,6 @@ header
         &:focus
             
             outline: 2px solid red
-        @media (max-width:1200px)
-            width: 55%
-        @media (max-width: 1000px)
-            width: 70%
 
 
         
@@ -88,7 +73,7 @@ header
     display: flex
     justify-content: center
     height: 100%
-    flex: 1
+    flex: 2
     width: 100%
     gap: 10px
     button
@@ -97,5 +82,7 @@ header
         align-items: center
         justify-content: center
         width: 100%
+        
+        
         
         

@@ -5,12 +5,8 @@ import Login from "./Pages/LoginPage/login";
 import HomePage from "./Pages/HomePage/home.jsx"
 import Register from  "./Pages/RegisterPage/Register"
 import RegisterRestaurant from "./Pages/RegisterRestaurant/RegisterRestaurant";
-import RestaurantCard from "./Pages/IndividualCard/RestaurantCard";
-import { getAllRestaurants } from "./config/api";
-import { useEffect, useState } from "react";
-import NotFound from "./Pages/404";
-
-
+import Restaurantcard from "./Pages/IndividualCard/RestaurantCard";
+import NotFound from "./Pages/404/error404.jsx";
 
 function App(){
     return(
@@ -21,10 +17,9 @@ function App(){
         <Route path="/" element={<HomePage />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/restaurant/add/*" element={<RegisterRestaurant/>}></Route>
-        <Route path="/teste/:id" element={<RestaurantCard />}></Route>
+        <Route path="/teste/:id" element={< Restaurantcard/>}></Route>
+        <Route path=""></Route>
         <Route path="/*" element={<NotFound/>}/>
-        
-        
       </Routes>
     </BrowserRouter>
     )

@@ -87,7 +87,7 @@ export default function TextAside(){
 
 
     return(
-        <article id="TextAside" >
+        <article id="TextAside" className="hidden lg:flex " >
             <div id="TitleTextAside">
                 <h1>Indaia<span>Spots</span></h1>
             </div>
@@ -119,11 +119,11 @@ export default function TextAside(){
 
                 </div>
             </div>
-            <nav id="dotSelectedArea">
+            <article id="dotSelectedArea">
                 <div className="dotSelected"></div>
                 <div className="dotSelected"></div>
                 <div className="dotSelected"></div>
-            </nav>
+            </article>
         </article>
     )
     
