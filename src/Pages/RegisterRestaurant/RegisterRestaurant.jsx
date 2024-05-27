@@ -9,7 +9,6 @@ export default function ResgisterRestaurant(){
 
 
     useEffect(()=>{
-        console.log(NEXT)
         // if(!NEXT){
         //     navigate('/restaurant/add/')
         // }else{

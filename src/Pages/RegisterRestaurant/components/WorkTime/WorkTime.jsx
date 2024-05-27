@@ -4,7 +4,7 @@ import { GiBarbecue , GiFullPizza , GiChopsticks , GiCookingPot   } from "react-
 import { IoFastFood , IoFish , IoBeerOutline } from "react-icons/io5";
 import "./worktime.sass"
 import { useState } from "react";
-import { addAddress, addImage, getPreSignedUrl, preSignedUrlImageUpload, SignUpRestaurant, deleteUser } from "../../../../config/api";
+import { addAddress, addImage, getPreSignedUrl, preSignedUrlImageUpload, SignUpRestaurant, deleteUser, registerRestaurant } from "../../../../config/api";
 
 const Toast = Swal.mixin({
     toast: true,
@@ -136,26 +136,7 @@ export default function WorkTime({Hour , All}){
             <div className="flex justify-between">
                 
                 <button type="button" className="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-large rounded-lg text-sm px-10 py-4 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-600 dark:focus:ring-red-800  self-end" onClick={()=>{
-                    SignUpRestaurant(All.Login).then(loginResponse => {
-                        const restaurantId = loginResponse.data.restaurantId;
-                        All.Address.ID_Restaurante = restaurantId;
-                        if(loginResponse.data.process) {
-                            addAddress(All.Address).then(res => {
-                                if(res.data.error) { 
-                                    deleteUser(All.Login.email).then(() => {
-                                        displayError(res.data.error, '/restaurant/add/address')
-                                    })
-                                }
-                                getPreSignedUrl(selectedImage.name).then(preSignedUrlResponse => {
-                                    preSignedUrlImageUpload(preSignedUrlResponse.data.signedUrl, selectedImage).then(() => {
-                                        const body = {filename : selectedImage.name, ID_Restaurante : restaurantId};
-                                        addImage(body);
-                                    })
-                                })  
-                            })
-                        }
-                        else if(loginResponse.data.error) { displayError(loginResponse.data.error, '/restaurant/add') }
-                    })
+                    registerRestaurant(All);
                 }}>
                     Avançar
                 <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">

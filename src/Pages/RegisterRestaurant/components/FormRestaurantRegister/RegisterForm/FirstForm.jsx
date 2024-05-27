@@ -9,7 +9,6 @@ export default function FirstForm({LoginComp, NEXT ,setNEXT , All}) {
         num : false
     })
 
-    console.log(All)
     const [controll, setcontroll] = useState('')
     
     useEffect(() => {
@@ -58,7 +57,6 @@ export default function FirstForm({LoginComp, NEXT ,setNEXT , All}) {
     
 
     useEffect(()=>{
-        console.table(check)
         if(check.lengthPass && check.num && check.upper){
             setDataPassword(true)
         }    
