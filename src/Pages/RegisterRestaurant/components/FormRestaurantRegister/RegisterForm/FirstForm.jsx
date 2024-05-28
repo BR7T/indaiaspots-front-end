@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import { PiEyeBold, PiEyeClosedBold } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";
 
-export default function FirstForm({LoginComp, NEXT ,setNEXT}) {
+export default function FirstForm({LoginComp, NEXT ,setNEXT , All}) {
     const [check, setcheck] = useState({
         lengthPass : false ,
         upper : false ,
         num : false
     })
+
     const [controll, setcontroll] = useState('')
     
     useEffect(() => {
@@ -56,7 +57,6 @@ export default function FirstForm({LoginComp, NEXT ,setNEXT}) {
     
 
     useEffect(()=>{
-        console.table(check)
         if(check.lengthPass && check.num && check.upper){
             setDataPassword(true)
         }    
@@ -112,7 +112,7 @@ export default function FirstForm({LoginComp, NEXT ,setNEXT}) {
         <>
             <form action="" id="FormSingInRestaurant">
                 <div>
-                    <label htmlFor="name">Nome do restaurante: </label>
+                    <label htmlFor="name">Nome de Usuário: </label>
                     <input type="text" id="name" placeholder="Nome" className="InputRestaurant " onChange={(e) => {
                         Effect(e, 'username');
                     }} required />

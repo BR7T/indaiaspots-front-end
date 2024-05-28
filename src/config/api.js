@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { getAppCheckToken } from './firebase';
 
-const apiUrl = 'https://southamerica-east1-indaiaspots.cloudfunctions.net/app';
-//const apiUrl = 'http://127.0.0.1:5001/indaiaspots/southamerica-east1/app';
+//const apiUrl = 'https://southamerica-east1-indaiaspots.cloudfunctions.net/app';
+const apiUrl = 'http://127.0.0.1:5001/indaiaspots/southamerica-east1/app';
 
 
 export async function GoogleSignInRequest(body) {
@@ -11,22 +11,22 @@ export async function GoogleSignInRequest(body) {
     return res;
 }
 
-export function signInRequest(body) {
-    console.log("ok")
-    const res = axios.post(`${apiUrl}/user/signin`, body ,{withCredentials : true});
-    console.log(body)
+export async function signInRequest(body) {
+    const token = await getAppCheckToken();
+    const res = axios.post(`${apiUrl}/user/signin`, body , {withCredentials : true, headers: {'Content-Type': 'application/json','X-Firebase-AppCheck': token}});
     return res;
 }
 
 export async function signUpRequest(body) {
+    const token = await getAppCheckToken();
     const res = axios.post(`${apiUrl}/user/signup`, body, {withCredentials : true, headers: {'Content-Type': 'application/json','X-Firebase-AppCheck': token}});
     return res;
 }
 
-export async function SignUpRestaurant(body){
+
+export async function registerRestaurant(body) {
     const token = await getAppCheckToken();
-    const res = axios.post(`${apiUrl}/restaurant/addRestaurant`, body, {withCredentials : true, headers: {'Content-Type': 'application/json','X-Firebase-AppCheck': token}});
-    console.log(res)
+    const res = axios.post(`${apiUrl}/restaurant/registerRestaurant`, body , {withCredentials : true, headers: {'Content-Type': 'application/json','X-Firebase-AppCheck': token}});
     return res;
 }
 
@@ -58,5 +58,22 @@ export async function checkToken() {
     const token = await getAppCheckToken();
     const res = await axios.get(`${apiUrl}/checkToken` , {withCredentials : true, headers: {'Content-Type': 'application/json','X-Firebase-AppCheck': token}});   
     return res;
+}
+
+export function preSignedUrlUpload(url,file) {
+    const res = axios.put(url, file, {withCredentials : true});
+    console.log("successful");
+}
+
+export async function getPreSignedUrl() {
+    const token = await getAppCheckToken();
+    const res = axios.post(`${apiUrl}/image/signedUrl`, {withCredentials : true, headers: {'Content-Type': 'application/json','X-Firebase-AppCheck': token}});
+    return res; 
+}
+
+export async function addImage(body) {
+    const token = await getAppCheckToken();
+    const res = axios.post(`${apiUrl}/image/addImage`, body , {withCredentials : true, headers: {'Content-Type': 'application/json','X-Firebase-AppCheck': token}});
+    console.log(res);
 }
 

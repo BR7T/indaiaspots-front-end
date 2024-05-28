@@ -70,3 +70,9 @@ export async function isEmailVerified(data) {
         return false;
     }
 }
+
+export function preSignedUrlUpload(url,file) {
+    const res = axios.put(url, file, { headers: {'Content-Type': file.type , withCredentials : true }}).then(() => {
+        console.log('successful');
+    })
+}

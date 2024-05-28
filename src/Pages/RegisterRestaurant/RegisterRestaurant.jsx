@@ -9,7 +9,6 @@ export default function ResgisterRestaurant(){
 
 
     useEffect(()=>{
-        console.log(NEXT)
         // if(!NEXT){
         //     navigate('/restaurant/add/')
         // }else{
@@ -21,6 +20,9 @@ export default function ResgisterRestaurant(){
                 break;
             case 1:
                 navigate('/restaurant/add/address')
+                break
+            case 2:
+                navigate('/restaurant/add/horaedia')
                 break
             default:
                 break;

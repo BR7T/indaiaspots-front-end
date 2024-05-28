@@ -1,53 +1,43 @@
 import { useState , useEffect} from "react"
 import { Form   , Outlet, useNavigate } from "react-router-dom"
-import {SignUpRestaurant} from "../../../../config/api.js"
 import "./RegisterRestaurantForm.sass"
-import { PiEyeBold , PiEyeClosedBold  } from "react-icons/pi";
 import CompleteBar from "../../../../standard/components/completeBar.jsx"
 import FirstForm from "./RegisterForm/FirstForm.jsx";
 import AddressForm from "./AddressForm/addressForm.jsx";
 import { Routes, Route } from "react-router-dom";
-import Preview from "../WorkTime/WorkTime.jsx";
 import WorkTime from "../WorkTime/WorkTime.jsx";
 
 
 export default function RegisterRestaurantFormArea({NEXT , setNEXT}){
-
+    
 
     const [Data , setData] = useState({
-        Login : null , 
-        Address : null,
-        Images : null,
-        WorkTime : null
-    })
-    console.log(Data)
-    const Login = Data.Login = {
-        username : '',
-        password : '',
-        confirm : '',
-        email:'' ,
-        
-    }
-    const Address = Data.Address = {
-            Nome: "",
-            CNPJ : "",
-            Rua : "" ,
-            Bairro : "",
-            num: ""
-    }
-    const Hour = Data.WorkTime = {
-        Dias : {
+        Login: {
+            username: '',
+            password: '',
+            confirm: '',
+            email: '',
+        },
+        Address: {
+            RazaoSocial: "",
+            CNPJ: "",
+            Rua: "",
+            Bairro: "",
+            Numero: "",
+            ID_Restaurante : ''
+        },
+        Images: null,
+        WorkTime: {
+            Dias : {
                 seg:"seg" , ter:'ter' , qua:'qua', qui:'qui' , sex:'sex' , sab:'sab' , dom:'dom'
                 },
         Horas : {
             Abre: "",
             Fecha:""
         }
-    }
-    console.log(Data.Login)
-
+        }
+    })
     
-
     return(
         <>
         <div id="formRegisterRestaurant"
@@ -59,16 +49,15 @@ export default function RegisterRestaurantFormArea({NEXT , setNEXT}){
             </div>
             {/* 3 melhores imagens do seu restaurante */}
                 <Routes>
-                    <Route path={'/'} element={<FirstForm LoginComp={Login} setData={setData} NEXT={NEXT} setNEXT={setNEXT} />}></Route>
-                    <Route path={"/address"} element={<AddressForm Address = {Address}/>} />
-                    <Route path={"/horaedia"} element={<AddressForm/>} />
-                    <Route path={"/a"} element={<WorkTime Hour = {Hour}  All = {Data}/>} />
+
+
+                    <Route path={'/'} element={<FirstForm LoginComp={Data.Login} setData={setData} NEXT={NEXT} setNEXT={setNEXT} />}></Route>
+                    <Route path={"/address"} element={<AddressForm Address = {Data.Address} All={Data.Login} setNEXT={setNEXT}/>} />
+                    <Route path={"/horaedia"} element={<WorkTime Hour = {Data.WorkTime}  All={Data} setNEXT={setNEXT}/>} />
+
                 </Routes>
             <Outlet/>
             </div>
             </>
     )
-    
-      
-    
 }
