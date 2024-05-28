@@ -17,7 +17,7 @@ const Toast = Swal.mixin({
     }
 });
 
-export default function WorkTime({Hour , All}){
+export default function WorkTime({Hour , All , setNEXT}){
     const navigate = useNavigate();
 
     function Effect(e, nome){
@@ -26,8 +26,8 @@ export default function WorkTime({Hour , All}){
         console.log(`${nome} : ${Hour[nome]}`)
     }
 
-    function displayError(error, pageUrl) {
-        navigate(pageUrl)
+    function displayError(error, page) {
+        setNEXT(page)
         Toast.fire({
             icon: "error",
             title: error
@@ -136,7 +136,18 @@ export default function WorkTime({Hour , All}){
             <div className="flex justify-between">
                 
                 <button type="button" className="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-large rounded-lg text-sm px-10 py-4 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-600 dark:focus:ring-red-800  self-end" onClick={()=>{
-                    registerRestaurant(All);
+                    registerRestaurant(All).then(response => {
+                        console.log(response);
+                        if(response.data.form == 'Usuario') {
+                            displayError(response.data.error,0)
+                        }
+                        else if(response.data.form == 'Endereco') {
+                            displayError(response.data.error , 1);
+                        }
+                        else {
+                            console.log('nao foi')
+                        }
+                    })
                 }}>
                     Avançar
                 <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
