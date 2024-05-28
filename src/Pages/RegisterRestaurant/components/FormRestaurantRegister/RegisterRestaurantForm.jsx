@@ -49,7 +49,10 @@ export default function RegisterRestaurantFormArea({NEXT , setNEXT}){
     
 
     return(
-        <div id="formRegisterRestaurant" className=" lg:h-3/4 lg:w-2/5 bg-white p-11 relative shadow-slate-900 shadow-lg sm:w-full h-full ">
+        <>
+        <div id="formRegisterRestaurant"
+        className='m-2 w-screen  sm:m-0 lg:h-3/4 lg:w-2/5 bg-white p-10 relative shadow-slate-900 shadow-lg md:rounded-3xl flex flex-col justify-evenly'
+        >
             <div className="flex justify-between flex-col">
              <h1 style={{fontFamily: 'Gilroy' , fontSize:"3rem"}}>Cadastre seu restaurante</h1>
              <CompleteBar tarefas={'4'}/>
@@ -63,7 +66,7 @@ export default function RegisterRestaurantFormArea({NEXT , setNEXT}){
                 </Routes>
             <Outlet/>
             </div>
-        
+            </>
     )
     
       

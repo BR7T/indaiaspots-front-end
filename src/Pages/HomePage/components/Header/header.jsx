@@ -70,9 +70,9 @@ export default function Header(){
 </>
                 ) :
                 (
-                <>
+                <nav className="buttonsArea">
                     <div id="SignInSignUp">
-                        <button className='border-2 border-red-600 rounded-lg bg-red-600 text-white font-semibold  hover:bg-white hover:text-red-600 hover:border-red-600 transition-all duration-300'
+                        <button className='border-2 border-red-600 rounded-lg bg-red-600 text-white font-semibold  hover:bg-white hover:text-red-600 hover:border-red-600 transition-all duration-300 '
                     onClick={()=>
                         navigate("/register")
                     }>
@@ -87,7 +87,7 @@ export default function Header(){
                         </button>
                         <ButtonAdd/>
                     </div>
-                </>
+                </nav>
                 )}
         </header>
     )
