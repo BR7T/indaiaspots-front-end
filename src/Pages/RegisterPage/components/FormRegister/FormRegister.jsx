@@ -75,7 +75,6 @@ export default function FormRegister(){
     function Effect(e, nome){
         const Item =  e.target.value
         Register[nome] = Item
-        console.log(`${nome} : ${Register[nome]}`)
     }
     function Validation(){
         if(Register.email === ''|| Register.password === '' || Register.name === ''){
@@ -126,7 +125,6 @@ export default function FormRegister(){
     function Effect(e, nome){
         const Item =  e.target.value
         Register[nome] = Item
-        console.log(`${nome} : ${Register[nome]}`)
     }
 
     return(
@@ -180,7 +178,6 @@ export default function FormRegister(){
 
             <button onClick={(e)=>{
                 e.preventDefault()
-                console.log(Register);
                 Validation()
                 
             }}>

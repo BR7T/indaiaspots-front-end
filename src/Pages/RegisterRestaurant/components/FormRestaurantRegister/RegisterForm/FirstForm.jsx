@@ -112,7 +112,7 @@ export default function FirstForm({LoginComp, NEXT ,setNEXT , All}) {
         <>
             <form action="" id="FormSingInRestaurant">
                 <div>
-                    <label htmlFor="name">Nome do restaurante: </label>
+                    <label htmlFor="name">Nome de Usuário: </label>
                     <input type="text" id="name" placeholder="Nome" className="InputRestaurant " onChange={(e) => {
                         Effect(e, 'username');
                     }} required />

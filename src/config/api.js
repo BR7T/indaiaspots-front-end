@@ -23,21 +23,10 @@ export async function signUpRequest(body) {
     return res;
 }
 
-export async function deleteUser(email) {
-    const token = await getAppCheckToken();
-    const res = axios.post(`${apiUrl}/user/delete?email=${email}`, {withCredentials : true, headers: {'Content-Type': 'application/json','X-Firebase-AppCheck': token}});
-    return res;
-}
 
-export async function SignUpRestaurant(body){
+export async function registerRestaurant(body) {
     const token = await getAppCheckToken();
-    const res = axios.post(`${apiUrl}/user/signupRestaurant`, body, {withCredentials : true, headers: {'Content-Type': 'application/json','X-Firebase-AppCheck': token}});
-    return res;
-}
-
-export async function SignUpRestaurantUser(body){
-    const token = await getAppCheckToken();
-    const res = axios.post(`${apiUrl}/restaurant/addRestaurantUser`, body, {withCredentials : true, headers: {'Content-Type': 'application/json','X-Firebase-AppCheck': token}});
+    const res = axios.post(`${apiUrl}/restaurant/registerRestaurant`, body , {withCredentials : true, headers: {'Content-Type': 'application/json','X-Firebase-AppCheck': token}});
     return res;
 }
 
@@ -71,26 +60,15 @@ export async function checkToken() {
     return res;
 }
 
-export async function addAddress(body) {
-    const token = await getAppCheckToken();
-    const res = axios.post(`${apiUrl}/address/addAddress`, body, {withCredentials : true, headers: {'Content-Type': 'application/json','X-Firebase-AppCheck': token}});
-    return res;
-}
-
-export async function getPreSignedUrl(filename) {
-    const token = await getAppCheckToken();
-    const res = axios.get(`${apiUrl}/image/signedUrl?filename=${filename}`,{withCredentials : true, headers: {'Content-Type': 'application/json','X-Firebase-AppCheck': token}});
-    return res;
-}
-
-export async function preSignedUrlImageUpload(url,file) {
-    axios.put(url, file, { headers: {'Content-Type': file.type }}).then((res) => {
-        if(res) console.log(res);
-        else {
-            console.log("Erro ao dar upload na imagem");
-        }
-    })
+export function preSignedUrlUpload(url,file) {
+    const res = axios.put(url, file, {withCredentials : true});
     console.log("successful");
+}
+
+export async function getPreSignedUrl() {
+    const token = await getAppCheckToken();
+    const res = axios.post(`${apiUrl}/image/signedUrl`, {withCredentials : true, headers: {'Content-Type': 'application/json','X-Firebase-AppCheck': token}});
+    return res; 
 }
 
 export async function addImage(body) {
@@ -99,7 +77,3 @@ export async function addImage(body) {
     console.log(res);
 }
 
-export async function registerRestaurant(body) {
-    const token = await getAppCheckToken();
-    const res = axios.post(`${apiUrl}/restaurant/registerRestaurant`, body , {withCredentials : true, headers: {'Content-Type': 'application/json','X-Firebase-AppCheck': token}});
-}

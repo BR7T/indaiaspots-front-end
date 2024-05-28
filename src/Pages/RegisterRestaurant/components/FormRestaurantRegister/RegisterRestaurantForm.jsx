@@ -1,6 +1,5 @@
 import { useState , useEffect} from "react"
 import { Form   , Outlet, useNavigate } from "react-router-dom"
-import {SignUpRestaurant} from "../../../../config/api.js"
 import "./RegisterRestaurantForm.sass"
 import CompleteBar from "../../../../standard/components/completeBar.jsx"
 import FirstForm from "./RegisterForm/FirstForm.jsx";
