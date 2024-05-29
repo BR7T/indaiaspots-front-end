@@ -28,9 +28,7 @@ export default function RegisterRestaurantFormArea({NEXT , setNEXT}){
         },
         Images: null,
         WorkTime: {
-            Dias : {
-                seg:"seg" , ter:'ter' , qua:'qua', qui:'qui' , sex:'sex' , sab:'sab' , dom:'dom'
-                },
+            Dias : [],
         Horas : {
             Abre: "",
             Fecha:""

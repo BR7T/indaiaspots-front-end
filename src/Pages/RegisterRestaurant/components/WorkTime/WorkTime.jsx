@@ -3,8 +3,8 @@ import {useNavigate } from "react-router-dom";
 import { GiBarbecue , GiFullPizza , GiChopsticks , GiCookingPot   } from "react-icons/gi";
 import { IoFastFood , IoFish , IoBeerOutline } from "react-icons/io5";
 import "./worktime.sass"
-import { useState } from "react";
-import { addAddress, addImage, getPreSignedUrl, preSignedUrlImageUpload, SignUpRestaurant, deleteUser, registerRestaurant } from "../../../../config/api";
+import { useState , useEffect} from "react";
+import {getPreSignedUrl, preSignedUrlUpload, registerRestaurant } from "../../../../config/api";
 
 const Toast = Swal.mixin({
     toast: true,
@@ -21,6 +21,7 @@ export default function WorkTime({Hour , All , setNEXT}){
     const navigate = useNavigate();
 
     const [selectedImage, setSelectedImage] = useState({});
+    const [selectedDays, setSelectedDays] = useState([]);
 
     const formData = new FormData();
     formData.append("image", selectedImage);
@@ -28,7 +29,6 @@ export default function WorkTime({Hour , All , setNEXT}){
     function Effect(e, nome){
         const Item =  e.target.value
         Hour[nome] = Item
-        console.log(`${nome} : ${Hour[nome]}`)
     }
 
     function displayError(error, page) {
@@ -38,6 +38,25 @@ export default function WorkTime({Hour , All , setNEXT}){
             title: error
         });
     }
+
+    const dayOrder = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"];
+    const handleCheckboxChange = (event) => {
+        const { name, checked } = event.target;
+        setSelectedDays(prevState => {
+            if (checked) {
+                return [...prevState, name];
+
+            } else {
+                return prevState.filter(day => day !== name);
+            }
+        });
+    };
+    useEffect(() => {
+        selectedDays.sort((a, b) => dayOrder.indexOf(a) - dayOrder.indexOf(b));
+        All.WorkTime.Dias = selectedDays;
+    }, [selectedDays]);
+
+
     return(
         <>
             <form action="" id="FormSingInRestaurant" className="">
@@ -69,32 +88,32 @@ export default function WorkTime({Hour , All , setNEXT}){
                 <div className="grid grid-cols-2 gap-x-8 gap-y-2 align-center justify-between w-full">
 
                          <div className="flex flex-row-reverse align-center justify-between">
-                            <input type="checkbox" name="dom" id="Domingo" />
+                            <input type="checkbox" name="Domingo" id="Domingo" onChange={handleCheckboxChange}/>
                             <label htmlFor="Domingo" style={{userSelect:'none'}}>Domingo</label>
                         </div>
                         <div className="flex flex-row-reverse align-center justify-between">
-                            <input type="checkbox" name="qui" id="Quinta" />
+                            <input type="checkbox" name="Quinta" id="Quinta" onChange={handleCheckboxChange}/>
                             <label htmlFor="Quinta" style={{userSelect:'none'}}>Quinta-Feira</label>
                         </div>
                         <div className="flex flex-row-reverse align-center justify-between">
-                            <input type="checkbox" name="seg" id="Segunda" />
+                            <input type="checkbox" name="Segunda" id="Segunda" onChange={handleCheckboxChange}/>
                             <label htmlFor="Segunda" style={{userSelect:'none'}}>Segunda-Feira</label>
                         </div>
                         <div className="flex flex-row-reverse align-center justify-between">
-                            <input type="checkbox" name="sex" id="Sexta" />
+                            <input type="checkbox" name="Sexta" id="Sexta" onChange={handleCheckboxChange}/>
                             <label htmlFor="Sexta" style={{userSelect:'none'}}>Sexta-Feira</label>
                         </div>
                         
                         <div className="flex flex-row-reverse align-center justify-between">
-                            <input type="checkbox" name="ter" id="Terca" />
+                            <input type="checkbox" name="Terça" id="Terca" onChange={handleCheckboxChange}/>
                             <label htmlFor="Terca" style={{userSelect:'none'}}>Terça-Feira</label>
                         </div>
                         <div className="flex flex-row-reverse align-center justify-between">
-                            <input type="checkbox" name="sab" id="Sábado" />
+                            <input type="checkbox" name="Sábado" id="Sábado" onChange={handleCheckboxChange}/>
                             <label htmlFor="Sábado" style={{userSelect:'none'}}>Sábado</label>
                         </div>
                         <div className="flex flex-row-reverse align-center justify-between">
-                            <input type="checkbox" name="qua" id="Quarta" />
+                            <input type="checkbox" name="Quarta" id="Quarta" onChange={handleCheckboxChange}/>
                             <label htmlFor="Quarta" style={{userSelect:'none'}}>Quarta-Feira</label>
                         </div>
                         
@@ -141,7 +160,7 @@ export default function WorkTime({Hour , All , setNEXT}){
             <div className="flex justify-between">
                 
                 <button type="button" className="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-large rounded-lg text-sm px-10 py-4 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-600 dark:focus:ring-red-800  self-end" onClick={()=>{
-                    registerRestaurant(All).then(response => {
+/*                     registerRestaurant(All).then(response => {
                         console.log(response);
                         if(response.data.form == 'Usuario') {
                             displayError(response.data.error,0)
@@ -152,11 +171,12 @@ export default function WorkTime({Hour , All , setNEXT}){
                         else {
                             getPreSignedUrl().then(res => {
                                 if(res.signedUrl) {
-                                    preSignedUrlImageUpload(res.signedUrl, selectedImage)
+                                    preSignedUrlUpload(res.signedUrl, selectedImage)
                                 }
                             })
                         }
-                    })
+                    }) */
+                    console.log(All.WorkTime.Dias);
                 }}>
                     Avançar
                 <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
