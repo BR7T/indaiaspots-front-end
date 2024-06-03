@@ -65,9 +65,9 @@ export function preSignedUrlUpload(url,file) {
     console.log("successful");
 }
 
-export async function getPreSignedUrl() {
+export async function getPreSignedUrl(filename) {
     const token = await getAppCheckToken();
-    const res = axios.post(`${apiUrl}/image/signedUrl`, {withCredentials : true, headers: {'Content-Type': 'application/json','X-Firebase-AppCheck': token}});
+    const res = axios.get(`${apiUrl}/image/signedUrl`, {withCredentials : true, headers: {'Content-Type': 'application/json','X-Firebase-AppCheck': token}});
     return res; 
 }
 

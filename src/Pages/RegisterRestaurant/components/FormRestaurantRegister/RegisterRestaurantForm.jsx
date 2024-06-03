@@ -26,14 +26,16 @@ export default function RegisterRestaurantFormArea({NEXT , setNEXT}){
             Numero: "",
             ID_Restaurante : ''
         },
-        Images: null,
+        Image: '',
         WorkTime: {
-            Dias : [],
+            Dias : '',
         Horas : {
             Abre: "",
-            Fecha:""
-        }
-        }
+            Fecha:"",
+        },
+        },
+        Tipo :'',
+        Icone :'',
     })
     
     return(

@@ -26,9 +26,15 @@ export default function WorkTime({Hour , All , setNEXT}){
     const formData = new FormData();
     formData.append("image", selectedImage);
 
+    useEffect(() => {
+        if (selectedImage) {
+            All.Image = selectedImage.name;
+        }
+    }, [selectedImage]);
+
     function Effect(e, nome){
         const Item =  e.target.value
-        Hour[nome] = Item
+        All.WorkTime.Horas[nome] = Item;
     }
 
     function displayError(error, page) {
@@ -53,8 +59,32 @@ export default function WorkTime({Hour , All , setNEXT}){
     };
     useEffect(() => {
         selectedDays.sort((a, b) => dayOrder.indexOf(a) - dayOrder.indexOf(b));
-        All.WorkTime.Dias = selectedDays;
+        let dias;
+        for(let i = 0; i < selectedDays.length; i++) {
+            if(i == 0) {
+                dias = selectedDays[i];
+            } else {
+                dias = dias + ','  + selectedDays[i];
+            }
+        }
+        All.WorkTime.Dias = dias;
     }, [selectedDays]);
+
+    
+    const [restaurantType, setRestaurantType] = useState('japonesa');
+    const handleRestaurantTypeChange = (event) => {
+        setRestaurantType(event.target.value);
+    };
+    useEffect(() => {
+        All.Tipo = restaurantType;
+    }, [restaurantType]);
+
+
+    const handleIconeChange = (value) => {
+        All.Icone = value;
+    };
+
+    
 
 
     return(
@@ -65,7 +95,6 @@ export default function WorkTime({Hour , All , setNEXT}){
                     <div>
                         <label htmlFor="Hour">Horário de funcionamento:</label>
                         <input type="time" id='Hour' className="InputRestaurant" onChange={(e)=>{
-                            
                             Effect(e,'Abre')
                             
                         }} maxLength='14' onKeyDown={(e)=>{
@@ -81,7 +110,7 @@ export default function WorkTime({Hour , All , setNEXT}){
                     <div>
                         <label htmlFor="Bairro">Até as...</label>
                         <input type="Time" id="Bairro" placeholder="Bairro..." className="InputRestaurant" onChange={(e)=>{
-                            Effect(e,'Fecha')
+                            Effect(e,'Fecha');
                         }} />
                     </div>
                 </div>
@@ -125,7 +154,7 @@ export default function WorkTime({Hour , All , setNEXT}){
                         <div className="w-3/5 h-28 bg-gray-200 flex flex-row items-center justify-between p-1 rounded-xl gap-8" style={{position:'relative'}} >
                             <div className="h-full w-1/3">
                                 <div className="flex w-full h-full flex-col ">
-                                    <select name="options" id="options" className="w-full h-full bg-transparent ">
+                                    <select name="options" id="options" className="w-full h-full bg-transparent" value={restaurantType} onChange={handleRestaurantTypeChange}>
                                         <option value="japonesa">Japonesa</option>
                                         <option value="Hamburgueria">Hamburgueria</option>
                                         <option value="Peixaria">Peixaria</option>
@@ -140,13 +169,14 @@ export default function WorkTime({Hour , All , setNEXT}){
                             </div>
                             
                             <div className="grid grid-cols-4 text-4xl gap-3">
-                                <nav><GiBarbecue/></nav>
-                                <nav><IoFastFood/></nav>
-                                <nav><IoFish/></nav>
-                                <nav><GiFullPizza/></nav>
-                                <nav><GiChopsticks/></nav>
-                                <nav><GiCookingPot /></nav>
-                                <nav><IoBeerOutline /></nav>
+                                <nav onClick={() => handleIconeChange(1)}><GiBarbecue /></nav>
+                                <nav onClick={() => handleIconeChange(2)}><IoFastFood /></nav>
+                                <nav onClick={() => handleIconeChange(3)}><IoFish /></nav>
+                                <nav onClick={() => handleIconeChange(4)}><GiFullPizza /></nav>
+                                <nav onClick={() => handleIconeChange(5)}><GiChopsticks /></nav>
+                                <nav onClick={() => handleIconeChange(6)}><GiCookingPot /></nav>
+                                <nav onClick={() => handleIconeChange(7)}><IoBeerOutline /></nav>
+                                <nav></nav>
                             </div>
                             
                         </div>
@@ -160,13 +190,19 @@ export default function WorkTime({Hour , All , setNEXT}){
             <div className="flex justify-between">
                 
                 <button type="button" className="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-large rounded-lg text-sm px-10 py-4 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-600 dark:focus:ring-red-800  self-end" onClick={()=>{
-/*                     registerRestaurant(All).then(response => {
+                    registerRestaurant(All).then(response => {
                         console.log(response);
                         if(response.data.form == 'Usuario') {
                             displayError(response.data.error,0)
                         }
                         else if(response.data.form == 'Endereco') {
                             displayError(response.data.error , 1);
+                        }
+                        else if(response.status == 500) {
+                            Toast.fire({
+                                icon: "error",
+                                title: 'Erro no servidor, tente novamente'
+                            });
                         }
                         else {
                             getPreSignedUrl().then(res => {
@@ -175,8 +211,7 @@ export default function WorkTime({Hour , All , setNEXT}){
                                 }
                             })
                         }
-                    }) */
-                    console.log(All.WorkTime.Dias);
+                    }) 
                 }}>
                     Avançar
                 <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
