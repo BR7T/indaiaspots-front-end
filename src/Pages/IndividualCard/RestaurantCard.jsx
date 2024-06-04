@@ -27,7 +27,7 @@ export default function Restaurantcard() {
 
             <figure className="flex flex-row h-full w-full px-24  items-center justify-center gap-5 shadow-sm shadow-black">
                 <article className="w-1/2 flex items-center justify-center">
-                    <img src={card.Url} alt="" />
+                    <img src={card.Url} alt=""/>
                 </article>
                 <div className="bg-white h-5/6 w-1/2 rounded-xl p-8 flex flex-col">
                     <div id="nameArea">
@@ -48,7 +48,7 @@ export default function Restaurantcard() {
                         <h1 className="mt-20" style={{ fontSize: '1.6rem' }}>Endereço</h1>
                         <p className="mb-10"style={{ fontSize: '1.1rem' }}>{`${card.Rua}, ${card.Numero} - ${card.Bairro}`}</p>
                     </div>
-                    <button className="mt-40 text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-large rounded-lg text-sm px-10 py-4 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-600 dark:focus:ring-red-800  self-end"><a href="/"> Voltar para Home</a></button>
+                    <button className="mt-40 text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-large rounded-lg text-sm px-10 py-4 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-600 dark:focus:ring-red-800  self-end" onClick={()=>{navigate('/')}}>Voltar para Home</button>
                 </div>
                 {/* ver cardápio , site do restaurante, se não tiver deixar como blocked o botão , telefone , endereço com maps */}
             </figure>

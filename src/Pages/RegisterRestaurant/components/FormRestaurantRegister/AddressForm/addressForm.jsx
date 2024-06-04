@@ -28,12 +28,10 @@ export default function AddressForm({Address , setNEXT , All}){
     },[])
 
     async function Complete(data){
-
-        
         Address.Bairro = data.estabelecimento.bairro
         Address.Numero = data.estabelecimento.numero
         Address.Rua = data.estabelecimento.logradouro
-        Address.RazaoSocial = data.razao_social
+        Address.RazaoSocial = document.getElementById('name').value;
         let CNPJ = document.getElementById('CNPJ')
 
         document.getElementById('name').value = data.razao_social
@@ -41,9 +39,7 @@ export default function AddressForm({Address , setNEXT , All}){
         ruaX.value = data.estabelecimento.logradouro
         numX.value =  data.estabelecimento.numero
         BairroX.value = data.estabelecimento.bairro
-
         console.log(Address)
-       
     }
     function Validation(){
         if(ruaX.value === "" || numX == "" || BairroX === ""){
@@ -57,6 +53,13 @@ export default function AddressForm({Address , setNEXT , All}){
             console.log('cadastro concluido')
         }
     }
+    
+    useEffect(() => {
+        Address.RazaoSocial = document.getElementById('name').value;
+        console.log(Address.RazaoSocial);
+    },[document.getElementById('name').value]) 
+
+    
     
 
     return(
