@@ -15,14 +15,18 @@ export default function CardArea(){
     return(
         <div className="CardArea flex flex-wrap justify-center">
             {Restaurantes && Restaurantes.map((Res , index)=>{
+                if(Res.Dia_Atendimento == 'Segunda, Terça, Quarta, Quinta, Sexta, Sábado, Domingo') {
+                    Res.Dia_Atendimento = 'Todos os dias';
+                }
                 let nome = Res.Nome
                 let dia = Res.Dia_Atendimento  
                 let id = Res.ID_Restaurante
+                let url = Res.Url
                 
                 return(
                     <div key={id} className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 mb-8 mx-4 sm:mx-2 lg:mx-4">
                         <a href="#">
-                            <img className="rounded-t-lg" src="https://img.freepik.com/fotos-premium/restaurante_23-2148014999.jpg?w=1380" alt="" />
+                            <img className="rounded-t-lg max-h-60 w-full object-cover object-center" src={url} alt="" />
                         </a>
                         <div className="p-5">
                             <a href="#">
