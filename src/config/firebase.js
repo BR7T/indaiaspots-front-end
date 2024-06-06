@@ -58,6 +58,11 @@ export async function signupEmailVerification(data) {
     sendEmailVerification(userCredentials.user);
 }
 
+export async function restaurantEmailVerification(data) {
+    const userCredentials = await createUserWithEmailAndPassword(auth,data.email,data.password);
+    sendEmailVerification(userCredentials.user);
+}
+
 export async function isEmailVerified(data) {
     try {
         const userCredential = await signInWithEmailAndPassword(auth, data.email, data.password);

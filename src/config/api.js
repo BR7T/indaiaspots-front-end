@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { getAppCheckToken } from './firebase';
 
-const apiUrl = 'https://southamerica-east1-indaiaspots.cloudfunctions.net/app';
-//const apiUrl = 'http://127.0.0.1:5001/indaiaspots/southamerica-east1/app';
+//const apiUrl = 'https://southamerica-east1-indaiaspots.cloudfunctions.net/app';
+const apiUrl = 'http://127.0.0.1:5001/indaiaspots/southamerica-east1/app';
 
 
 export async function GoogleSignInRequest(body) {
@@ -63,6 +63,7 @@ export async function checkToken() {
 export async function preSignedUrlUpload(url,file) {
     const res = axios.put(url, file, {withCredentials : true});
     console.log("successful");
+    return res;
 }
 
 export async function getPreSignedUrl(filename) {
