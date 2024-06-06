@@ -62,7 +62,7 @@ export async function checkToken() {
 
 export async function preSignedUrlUpload(url,file) {
     const res = axios.put(url, file, {withCredentials : true});
-    console.log("successful");
+    return res;
 }
 
 export async function getPreSignedUrl(filename) {

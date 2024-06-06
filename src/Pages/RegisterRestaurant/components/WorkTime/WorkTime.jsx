@@ -4,7 +4,9 @@ import { GiBarbecue, GiFullPizza, GiChopsticks, GiCookingPot } from "react-icons
 import { IoFastFood, IoFish, IoBeerOutline } from "react-icons/io5";
 import "./worktime.sass"
 import { useState, useEffect } from "react";
+import { restaurantEmailVerification } from "../../../../config/firebase";
 import { getPreSignedUrl, preSignedUrlUpload, registerRestaurant } from "../../../../config/api";
+import Swal from 'sweetalert2';
 
 const Toast = Swal.mixin({
     toast: true,
@@ -26,7 +28,7 @@ export default function WorkTime({ Hour, All, setNEXT }) {
     const formData = new FormData();
     const [activeIcon, setActiveIcon] = useState(null);
 
-    const handleIconChange = (iconIndex) => {
+    const setActiveIcone = (iconIndex) => {
         setActiveIcon(iconIndex);
     };
     formData.append("image", selectedImage);
@@ -85,7 +87,7 @@ export default function WorkTime({ Hour, All, setNEXT }) {
     }, [restaurantType]);
 
 
-    const handleIconeChange = (value) => {
+    const handleIconChange = (value) => {
         All.Icone = value;
     };
 
@@ -176,43 +178,64 @@ export default function WorkTime({ Hour, All, setNEXT }) {
                             <div className="grid grid-cols-4 text-4xl gap-3">
                                 <nav
                                     className={activeIcon === 1 ? 'active' : ''}
-                                    onClick={() => handleIconChange(1)}
+                                    onClick={() => {
+                                        handleIconChange(1)
+                                        setActiveIcon(1)
+                                    }}
                                 >
                                     <GiBarbecue />
                                 </nav>
                                 <nav
                                     className={activeIcon === 2 ? 'active' : ''}
-                                    onClick={() => handleIconChange(2)}
+                                    onClick={() => {
+                                        handleIconChange(2)
+                                        setActiveIcon(2)
+                                    }}
                                 >
                                     <IoFastFood />
                                 </nav>
                                 <nav
                                     className={activeIcon === 3 ? 'active' : ''}
-                                    onClick={() => handleIconChange(3)}
+                                    onClick={() => {
+                                        handleIconChange(3)
+                                        setActiveIcon(3)
+                                    }}
                                 >
                                     <IoFish />
                                 </nav>
                                 <nav
                                     className={activeIcon === 4 ? 'active' : ''}
-                                    onClick={() => handleIconChange(4)}
+                                    onClick={() => {
+                                        handleIconChange(4)
+                                        setActiveIcon(4)
+                                    }}
                                 >
                                     <GiFullPizza />
                                 </nav>
                                 <nav
                                     className={activeIcon === 5 ? 'active' : ''}
-                                    onClick={() => handleIconChange(5)}
+                                    onClick={() => {
+                                        handleIconChange(5)
+                                        setActiveIcon(5)
+                                    }}
                                 >
                                     <GiChopsticks />
                                 </nav>
                                 <nav
                                     className={activeIcon === 6 ? 'active' : ''}
-                                    onClick={() => handleIconChange(6)}
+                                    onClick={() => {
+                                        handleIconChange(6)
+                                        setActiveIcon(6)
+                                    }}
                                 >
                                     <GiCookingPot />
                                 </nav>
                                 <nav
                                     className={activeIcon === 7 ? 'active' : ''}
-                                    onClick={() => handleIconChange(7)}
+                                    onClick={() => {
+                                        handleIconChange(7)
+                                        setActiveIcon(7)
+                                    }}
                                 >
                                     <IoBeerOutline />
                                 </nav>
@@ -245,12 +268,18 @@ export default function WorkTime({ Hour, All, setNEXT }) {
                         }
                         else {
                             getPreSignedUrl(selectedImage.name).then(res => {
-                                if (res.data.signedUrl) {
-                                    preSignedUrlUpload(res.data.signedUrl, selectedImage).then(res => {
-                                        if (res.status == 200) {
-                                            console.log('foi')
-                                        }
-                                    })
+                                if (res.status === 200) {
+                                    restaurantEmailVerification(All.Login);
+                                    Swal.fire({
+                                        icon: "info",
+                                        title: "Verifique sua caixa de email",
+                                        confirmButtonText: `<a href='/login'>Ir para tela de Login</a>`
+                                    });
+                                } else {
+                                    Toast.fire({
+                                        icon: "error",
+                                        title: "Erro ao dar upload na imagem, tente novamente"
+                                    });
                                 }
                             })
                         }
