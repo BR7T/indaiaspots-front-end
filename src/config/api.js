@@ -77,3 +77,11 @@ export async function addImage(body) {
     console.log(res);
 }
 
+export async function searchRestaurant(keyword) { 
+    const token = await getAppCheckToken();
+    let body = {}
+    body.keyword = keyword;
+    const res = axios.post(`${apiUrl}/restaurant/searchRestaurant`, body , {withCredentials : true, headers: {'Content-Type': 'application/json','X-Firebase-AppCheck': token}});
+    return res;
+}
+

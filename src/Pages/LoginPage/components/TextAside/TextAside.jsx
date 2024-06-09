@@ -114,7 +114,7 @@ export default function TextAside(){
                         {Stars()}
                     </div>
                     <div id="ButtonChange" onMouseEnter={()=>{settimeInterval(99999999999999)}} onMouseLeave={()=>{settimeInterval(3000)}}>
-                            <ButtonLogin text="Saiba Mais" />
+                            <a href={Local.Login[currentDot].link}><ButtonLogin text="Saiba Mais"/></a>
                     </div>
 
                 </div>

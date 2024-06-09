@@ -71,10 +71,11 @@ export default function WorkTime({ Hour, All, setNEXT }) {
             if (i == 0) {
                 dias = selectedDays[i];
             } else {
-                dias = dias + ',' + selectedDays[i];
+                dias = dias + ',' + ' ' + selectedDays[i];
             }
         }
         All.WorkTime.Dias = dias;
+        console.log(All.WorkTime.Dias);
     }, [selectedDays]);
 
 
@@ -90,8 +91,6 @@ export default function WorkTime({ Hour, All, setNEXT }) {
     const handleIconChange = (value) => {
         All.Icone = value;
     };
-
-
 
 
     return (
@@ -268,23 +267,24 @@ export default function WorkTime({ Hour, All, setNEXT }) {
                         }
                         else {
                             getPreSignedUrl(selectedImage.name).then(res => {
-                                if (res.status === 200) {
-                                    restaurantEmailVerification(All.Login);
-                                    Swal.fire({
-                                        icon: "info",
-                                        title: "Verifique sua caixa de email",
-                                        confirmButtonText: `<a href='/login'>Ir para tela de Login</a>`
-                                    });
-                                } else {
-                                    Toast.fire({
-                                        icon: "error",
-                                        title: "Erro ao dar upload na imagem, tente novamente"
-                                    });
-                                }
+                                preSignedUrlUpload(res.data.signedUrl, selectedImage).then(response => {
+                                    if (response.status === 200) {
+                                        restaurantEmailVerification(All.Login);
+                                        Swal.fire({
+                                            icon: "info",
+                                            title: "Verifique sua caixa de email",
+                                            confirmButtonText: `<a href='/login'>Ir para tela de Login</a>`
+                                        });
+                                    } else {
+                                        Toast.fire({
+                                            icon: "error",
+                                            title: "Erro ao dar upload na imagem, tente novamente"
+                                        });
+                                    }
+                                })
                             })
                         }
                     })
-
                 }}>
                     Avançar
                     <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">

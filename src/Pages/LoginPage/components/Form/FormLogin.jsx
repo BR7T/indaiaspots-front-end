@@ -5,7 +5,7 @@ import { IoIosArrowDropright } from "react-icons/io";
 import { useState } from "react";
 import { GoogleSignInRequest , signInRequest} from "../../../../config/api";
 import { isEmailVerified, signInWithGoogle } from "../../../../config/firebase";
-
+import { Spinner } from "flowbite-react";
 
 const Toast = Swal.mixin({
     toast: true,
@@ -24,6 +24,8 @@ export default function FormLogin(){
         email : "",
         password : ""
     })
+
+    const [loading, setloading] = useState(false);
 
     return(
     <div id="formArea">
@@ -55,29 +57,29 @@ export default function FormLogin(){
             }
                 />
             <a href="#" id="forgotYP" className="text-s">Esqueceu sua senha?</a>
-
-
-            <button onClick={(e)=>{
-                e.preventDefault()
-                isEmailVerified(Login).then(verified => {
-                    if(verified){
-                        signInRequest(Login).then(res => {
-                            if(res.data.Accepted) {
-                                window.location.href = '/';
-                            }
-                        })
-                    } 
-                    else {
-                        Toast.fire({
-                            icon:'error',
-                            title: "Email ou senha inválidos"
-                        })
-                    }
-                })
-            }}>
-                <p>Entrar</p> <IoIosArrowDropright id="ArrowIcon"/>
-            </button>
-            
+                <button onClick={(e)=>{
+                    setloading(true)
+                    e.preventDefault()
+                    isEmailVerified(Login).then(verified => {
+                        if(verified){
+                            signInRequest(Login).then(res => {
+                                if(res.data.Accepted) {
+                                    window.location.href = '/';
+                                }
+                            })
+                        } 
+                        else {
+                            Toast.fire({
+                                icon:'error',
+                                title: "Email ou senha inválidos"
+                            })
+                            setloading(false)
+                        }
+                    })
+                }}>
+                    {loading ?  (<><Spinner color="pink" aria-label="Info spinner example" /><IoIosArrowDropright id="ArrowIcon" /></>) : 
+                    (<><p>Entrar</p><IoIosArrowDropright id="ArrowIcon" /></>)}
+                </button>
         </form>
     </div>  
     )

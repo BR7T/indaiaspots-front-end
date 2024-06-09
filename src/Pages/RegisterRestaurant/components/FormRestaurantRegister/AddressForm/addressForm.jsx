@@ -16,7 +16,7 @@ export default function AddressForm({Address , setNEXT , All}){
     function Effect(e, nome){
         const Item =  e.target.value
         Address[nome] = Item
-        console.log(`${nome} : ${Address[nome]}`)
+        //console.log(`${nome} : ${Address[nome]}`)
     }
     let ruaX;
     let BairroX
@@ -31,10 +31,9 @@ export default function AddressForm({Address , setNEXT , All}){
         Address.Bairro = data.estabelecimento.bairro
         Address.Numero = data.estabelecimento.numero
         Address.Rua = data.estabelecimento.logradouro
+        document.getElementById('name').value = data.razao_social
         Address.RazaoSocial = document.getElementById('name').value;
         let CNPJ = document.getElementById('CNPJ')
-
-        document.getElementById('name').value = data.razao_social
         console.log('a')
         ruaX.value = data.estabelecimento.logradouro
         numX.value =  data.estabelecimento.numero
@@ -53,11 +52,15 @@ export default function AddressForm({Address , setNEXT , All}){
             console.log('cadastro concluido')
         }
     }
-    
-    useEffect(() => {
+    function handleRestaurantNameChange(value) {
         Address.RazaoSocial = document.getElementById('name').value;
-        console.log(Address.RazaoSocial);
-    },[document.getElementById('name').value]) 
+        console.log(Address);
+    }
+
+/*     useEffect(() => {
+        ;
+        console.log(Address);
+    },[document.getElementById('name').value]) */ 
 
     
     
@@ -69,6 +72,7 @@ export default function AddressForm({Address , setNEXT , All}){
                     <label htmlFor="name">Nome do restaurante:</label>
                     <input type="text" id="name" placeholder=''className="InputRestaurant " onChange={(e)=>{
                         Effect(e,'Nome')
+                        handleRestaurantNameChange(e);
                     }}/>
                 </div>
                 <div className="flex flex-row">

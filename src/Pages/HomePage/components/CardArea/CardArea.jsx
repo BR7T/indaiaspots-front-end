@@ -5,14 +5,25 @@ import { GiBarbecue, GiFullPizza, GiChopsticks, GiCookingPot } from "react-icons
 import { IoFastFood, IoFish, IoBeerOutline } from "react-icons/io5";
 
 
-export default function CardArea(){
+export default function CardArea({searchResults, noResults}){
     
     const [Restaurantes, setRestaurantes] = useState([])
+    const [initialRequest, setinitialRequest] = useState([])
     useEffect(() => {
         getAllRestaurants().then(r => {
             setRestaurantes(r.data)
+            setinitialRequest(r.data)
         })
     }, [])
+
+    useEffect(() => {
+        if(searchResults.length > 0){
+            setRestaurantes(searchResults)
+        }
+        else {
+            setRestaurantes(initialRequest);
+        }
+    }, [searchResults]) 
     
     return(
         <div className="CardArea flex flex-wrap justify-center">

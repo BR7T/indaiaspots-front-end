@@ -17,19 +17,18 @@ function Home(){
           return () => clearTimeout(timer);
     },[])
     
+    const [searchResults, setSearchResults] = useState({});
+    const [noResults, setNoResults] = useState(false);
 
    return(
     <div className="h-full">
     {loading ? <Loading/> : (
-        
-            <div id="HOME">
-                <Header/>
-                <main>
-                    <CardArea/>
-                   
-                </main>
-            </div>
-        
+        <div id="HOME">
+            <Header setSearchResults={setSearchResults} setNoResults={setNoResults}/>
+            <main>
+                <CardArea searchResults={searchResults} noResults={noResults}/>
+            </main>
+        </div>
     )}
    </div>
    )

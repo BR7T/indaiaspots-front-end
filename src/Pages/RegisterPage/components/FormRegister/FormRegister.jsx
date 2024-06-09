@@ -6,6 +6,7 @@ import { useState } from "react";
 import { GoogleSignInRequest , signUpRequest } from "../../../../config/api";
 import { signInWithGoogle, signupEmailVerification } from "../../../../config/firebase";
 import Swal from 'sweetalert2/src/sweetalert2.js';
+import { Spinner } from "flowbite-react";
 
 const Toast = Swal.mixin({
     toast: true,
@@ -26,99 +27,56 @@ export default function FormRegister(){
         name: "",
         confirmPassword : ""
     })
+
+    const [loading, setloading] = useState(false);
+
     function Validation(){
         if(Register.email === ''|| Register.password === '' || Register.name === ''){
             Toast.fire({
                 icon:'error',
                 title: "Preencha todos os campos"
             })
-        }else if(Register.password !== Register.confirmPassword){
+        } else if(Register.password !== Register.confirmPassword){
             Toast.fire({
                 icon:'error',
                 title: "As senhas devem ser iguais"
             })
-        }else{
-            signUpRequest(Register).then(res => {
-                if(res.data.process){
-                    signupEmailVerification(Register);
-                    Toast.fire({
-                        icon: "info",
-                        title: "Verifique sua caixa de email"
-                      });
-                      document.getElementById('email').value = ''
-                      document.getElementById('name').value = ''
-                      document.getElementById('password').value = ''
-                      document.getElementById('passwordRepeat').value = ''
-
-                      Register.email = ''
-                      Register.name = ''
-                      Register.confirmPassword = ''
-                      Register.password = ''
-                }else if(res.data.error){
-                    Toast.fire({
-                        icon: "error",
-                        title: res.data.error
-                      });
-                }else{
-                    Toast.fire({
-                        icon: "error",
-                        title: "505 - Erro no servidor"
-                      });
-                }
-                
-            })
-            
-            
         }
-    }
-
-    function Effect(e, nome){
-        const Item =  e.target.value
-        Register[nome] = Item
-    }
-    function Validation(){
-        if(Register.email === ''|| Register.password === '' || Register.name === ''){
-            Toast.fire({
-                icon:'error',
-                title: "Preencha todos os campos"
-            })
-        }else if(Register.password !== Register.confirmPassword){
-            Toast.fire({
-                icon:'error',
-                title: "As senhas devem ser iguais"
-            })
-        }else{
+        else {
+            setloading(true);
             signUpRequest(Register).then(res => {
                 if(res.data.process){
                     signupEmailVerification(Register);
                     Toast.fire({
                         icon: "info",
                         title: "Verifique sua caixa de email"
-                      });
-                      document.getElementById('email').value = ''
-                      document.getElementById('name').value = ''
-                      document.getElementById('password').value = ''
-                      document.getElementById('passwordRepeat').value = ''
+                    });
+                    document.getElementById('email').value = ''
+                    document.getElementById('name').value = ''
+                    document.getElementById('password').value = ''
+                    document.getElementById('passwordRepeat').value = ''
 
-                      Register.email = ''
-                      Register.name = ''
-                      Register.confirmPassword = ''
-                      Register.password = ''
-                }else if(res.data.error){
+                    Register.email = ''
+                    Register.name = ''
+                    Register.confirmPassword = ''
+                    Register.password = ''
+                    setloading(false);
+                }
+                else if(res.data.error){
                     Toast.fire({
                         icon: "error",
                         title: res.data.error
-                      });
-                }else{
+                    });
+                    setloading(false);
+                }
+                else{
                     Toast.fire({
                         icon: "error",
                         title: "505 - Erro no servidor"
-                      });
+                    });
+                    setloading(false);
                 }
-                
             })
-            
-            
         }
     }
 
@@ -174,16 +132,13 @@ export default function FormRegister(){
                 </div>
 
             </section>
-
-
-            <button onClick={(e)=>{
-                e.preventDefault()
-                Validation()
-                
-            }}>
-                <p>Entrar</p> <IoIosArrowDropright id="ArrowIcon"/>
-            </button>
-            
+                <button onClick={(e)=>{
+                    e.preventDefault()
+                    Validation() 
+                }}>
+                    {loading ?  (<><Spinner color="pink" aria-label="Info spinner example" /><IoIosArrowDropright id="ArrowIcon" /></>) : 
+                    (<><p>Entrar</p><IoIosArrowDropright id="ArrowIcon" /></>)}
+                </button>
         </form>
         
     </div>  

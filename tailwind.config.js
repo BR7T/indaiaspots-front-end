@@ -4,13 +4,15 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('flowbite/plugin')
+  ],
 }
 
-module.exports = {
+/* module.exports = {
 
   plugins: [
       require('flowbite/plugin')
   ]
 
-}
+} */
