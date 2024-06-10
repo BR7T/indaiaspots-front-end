@@ -50,14 +50,6 @@ export default function Header({setSearchResults, setNoResults}){
                 setSearchResults({});
             }
         }, 1000);
-/*         if(!value == '') {
-            searchRestaurant(value).then(res => {
-                setSearchResults(res.data);
-            })
-        }
-        else {
-            setSearchResults({});
-        } */
     }
 
     return(
@@ -89,6 +81,7 @@ export default function Header({setSearchResults, setNoResults}){
                             <p className="mx-4">{username.split(' ')[0]}</p> 
                             <CgProfile className="w-5 h-5"/>
                         </button>}>
+                        <div className="group-hover:pointer-events-auto">
                         <DropdownHeader className="px-4 py-3 text-sm text-gray-900 dark:text-white hover:bg-gray-100 cursor-pointer select-none">
                             <div>{username}</div>
                             <div className="font-medium truncate">{email}</div>
@@ -96,6 +89,7 @@ export default function Header({setSearchResults, setNoResults}){
                         <Dropdown.Item onClick={()=>{logout().then(res=>window.location.href = '/login')}}>
                             Sair
                         </Dropdown.Item>
+                        </div>
                         </Dropdown>
                     </>
                 ) :
