@@ -16,7 +16,6 @@ export default function AddressForm({Address , setNEXT , All}){
     function Effect(e, nome){
         const Item =  e.target.value
         Address[nome] = Item
-        //console.log(`${nome} : ${Address[nome]}`)
     }
     let ruaX;
     let BairroX
@@ -38,7 +37,6 @@ export default function AddressForm({Address , setNEXT , All}){
         ruaX.value = data.estabelecimento.logradouro
         numX.value =  data.estabelecimento.numero
         BairroX.value = data.estabelecimento.bairro
-        console.log(Address)
     }
     function Validation(){
         if(ruaX.value === "" || numX == "" || BairroX === ""){
@@ -49,21 +47,12 @@ export default function AddressForm({Address , setNEXT , All}){
         }else{
             console.log(All)
             setNEXT(2)
-            console.log('cadastro concluido')
         }
     }
     function handleRestaurantNameChange(value) {
         Address.RazaoSocial = document.getElementById('name').value;
-        console.log(Address);
     }
-
-/*     useEffect(() => {
-        ;
-        console.log(Address);
-    },[document.getElementById('name').value]) */ 
-
-    
-    
+        
 
     return(
         <>
@@ -88,8 +77,6 @@ export default function AddressForm({Address , setNEXT , All}){
                             }
                         }}
                         onPaste={e=>{
-                            // e.preventDefault()
-                            // window.alert('não é possível colar CNPJ nesse campo')
                         }}/>    
                     </div>
                     <div>

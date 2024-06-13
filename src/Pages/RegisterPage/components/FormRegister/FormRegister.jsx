@@ -136,8 +136,9 @@ export default function FormRegister(){
                     e.preventDefault()
                     Validation() 
                 }}>
-                    {loading ?  (<><Spinner color="pink" aria-label="Info spinner example" /><IoIosArrowDropright id="ArrowIcon" /></>) : 
-                    (<><p>Entrar</p><IoIosArrowDropright id="ArrowIcon" /></>)}
+                    {loading ?  (<><Spinner color="pink" aria-label="Info spinner example" /></>) : 
+                    (<p>Entrar</p>)} 
+                    <IoIosArrowDropright id="ArrowIcon" />
                 </button>
         </form>
         

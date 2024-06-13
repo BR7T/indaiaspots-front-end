@@ -75,7 +75,6 @@ export default function WorkTime({ Hour, All, setNEXT }) {
             }
         }
         All.WorkTime.Dias = dias;
-        console.log(All.WorkTime.Dias);
     }, [selectedDays]);
 
 
@@ -252,7 +251,6 @@ export default function WorkTime({ Hour, All, setNEXT }) {
 
                 <button type="button" className="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-large rounded-lg text-sm px-10 py-4 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-600 dark:focus:ring-red-800  self-end" onClick={() => {
                     registerRestaurant(All).then(response => {
-                        console.log(response);
                         if (response.data.form == 'Usuario') {
                             displayError(response.data.error, 0)
                         }

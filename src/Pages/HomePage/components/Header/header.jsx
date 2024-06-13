@@ -10,7 +10,6 @@ import { CgProfile } from "react-icons/cg";
 import { Dropdown, DropdownHeader } from 'flowbite-react';
 
 
-
 export default function Header({setSearchResults, setNoResults}){
     
     const navigate = useNavigate();
